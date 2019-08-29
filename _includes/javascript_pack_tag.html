@@ -1,0 +1,5 @@
+{%capture src%}{% include asset_pack_path.html asset_name="foo.js" %}{%endcapture%}
+<pre><code>
+  script src="{{src | strip }}" {% if include.async %}async{% endif %} {% if include.defer %}defer{% endif %}
+  /script
+</code></pre>

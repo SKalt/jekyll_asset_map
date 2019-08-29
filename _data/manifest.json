@@ -1,3 +1,10 @@
 {
-  "foo": "foo.h4sh3d.js"
+  "foo.js": "foo.h4sh3d.js",
+  "bar.png": "bar.md5hd.js",
+  "entrypoints": {
+    "app": {
+      "js": ["app.chunk.asdf.js", "app.chunk.jfdas.js"],
+      "css": ["app.chunk.qqwert.css", "app.chunk.uiopp.css"]
+    }
+  }
 }

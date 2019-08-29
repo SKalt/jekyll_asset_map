@@ -5,4 +5,4 @@
 layout: home
 ---
 
-{% include asset_map.html %}
+{% include javascript_pack_tag.html %}
