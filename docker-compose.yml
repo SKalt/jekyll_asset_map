@@ -1,0 +1,27 @@
+version: "3.4"
+x-abstract:
+  volumes: &volumes
+    src: &src_volume .:/srv/jekyll:cached
+    bundle: &bundle_volume bundle:/usr/local/bundle
+    node_modules: &node_modules_volume node_modules:/node_modules
+
+
+services:
+  jekyll-3.8:
+    image: jekyll/jekyll:3.8
+    volumes:
+      - *src_volume
+      - *bundle_volume
+    ports:
+      - '4000:4000'
+      - '35729:35729'
+    command: ["jekyll", "serve", "--livereload"]
+  webpack:
+    image: node:12.9.0-alpine
+    volumes:
+      - *src_volume
+      - *node_modules_volume
+
+volumes:
+  node_modules:
+  bundle:

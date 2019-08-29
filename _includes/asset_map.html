@@ -1,0 +1,4 @@
+<!-- parameters: asset_map_name="manifest", asset_names=[] -->
+<!-- this performs the name lookup -->
+{% assign asset_map = site.data[{{include.asset_map | default: 'manifest'}}] %}
+{{ asset_map }}
