@@ -1,5 +1,5 @@
 {%
-  capture src
+  capture href
 %}{%
   include asset_pack_path.html
     asset_map=include.asset_map
@@ -15,22 +15,18 @@
 %}{%
   endcapture
 %}{%
-  if src != ""
-%}{% assign bools = "async,defer,nomodule" | split: "," %}
-<script src="{{ src }}" {%
+  if href != ""
+%}{%
+  assign echoed = "crossorigin,importance,media" | split: ","
+%}<link rel="stylesheet" href="{{ href }}" {%
   if integrity != ""
 %}integrity="{{ integrity }}" {%
   endif
 %}{%
-  for attr in bools
-  %}{%
-    if include[attr] %}{{ attr }} {% endif %}{%
+  for echo in echoed
+  %}{% if include[echo] %}{{ echo }}="{{ include[echo] }}" {% endif %}{%
   endfor
-%}{%
-  if include.type
-%}type="{{ include.type }}" {%
-  endif
-%}></script>
+%}>
 {% else %}
-<!-- WARNING! missing javascript pack named {{ include.asset_name }} -->
+<!-- WARNING! missing stylesheet pack named {{ include.asset_name }} -->
 {% endif %}
