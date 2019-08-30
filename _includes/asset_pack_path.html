@@ -1,3 +1,18 @@
-{% capture asset_map_name %}{{ include.asset_map | default: 'manifest'}}{%endcapture%}
-{% assign asset_map = site.data[asset_map_name] %}
-{{ asset_map[include.asset_name] }}
+{%
+  capture asset_map_name
+%}{{ include.asset_map | default: 'manifest'}}{%
+  endcapture
+%}{%
+  assign asset_map = site.data[asset_map_name]
+%}{%
+  assign asset = asset_map[include.asset_name]
+%}{%
+  if asset
+%}{{
+  asset.path
+    | default: asset.src
+    | default: asset.asset
+    | default: asset
+}}{%
+  endif
+%}

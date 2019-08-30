@@ -1,5 +1,46 @@
-{%capture src%}{% include asset_pack_path.html asset_name="foo.js" %}{%endcapture%}
-<pre><code>
-  script src="{{src | strip }}" {% if include.async %}async{% endif %} {% if include.defer %}defer{% endif %}
-  /script
-</code></pre>
+{%
+  capture src
+%}{%
+  include asset_pack_path.html
+    asset_map=include.asset_map
+    asset_name=include.asset_name
+%}{%
+  endcapture
+%}{%
+  capture integrity
+%}{%
+  include asset_integrity.html
+    asset_map=include.asset_map
+    asset_name=include.asset_name
+%}{%
+  endcapture
+%}{%
+  if src != ""
+%}
+<script src="{{ src }}" {%
+  if integrity != ""
+%}integrity="{{ integrity }}" {%
+  endif
+%}{%
+  if include.async
+%}async {%
+  endif
+%}{%
+  if include.defer
+%}defer{%
+  endif
+%}{%
+  if include.type
+%}
+type="{{ include.type }}"
+{%
+  endif
+%}{%
+  if include.nomodule
+%}{%
+  endif
+%}
+></script>
+{% else %}
+<!-- WARNING! missing javascript pack named {{ include.asset_name }} -->
+{%endif%}
