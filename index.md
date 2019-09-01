@@ -10,4 +10,6 @@ layout: home
 {% include javascript_pack_tag.html asset_name="quux.js" %}
 {% include asset_pack_path.html asset_name="foo.js" %}
 {% include javascript_pack_tag.html asset_name="bar.js" %}
-{% include stylesheet_pack_tag.html asset_name="bar.js" %}
+<hr>
+{% include javascript_packs_with_chunks.html entrypoints="app1,app2"%}
+<hr>

@@ -5,7 +5,11 @@
     "integrity": "sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC"
   },
   "entrypoints": {
-    "app": {
+    "app1": {
+      "js": ["app.chunk.asdf.js", "app.chunk.jfdas.js"],
+      "css": ["app.chunk.qqwert.css", "app.chunk.uiopp.css"]
+    },
+    "app2": {
       "js": ["app.chunk.asdf.js", "app.chunk.jfdas.js"],
       "css": ["app.chunk.qqwert.css", "app.chunk.uiopp.css"]
     }

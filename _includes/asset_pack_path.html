@@ -11,6 +11,7 @@
 %}{{
   asset.path
     | default: asset.src
+    | default: asset.href
     | default: asset.asset
     | default: asset
 }}{%
