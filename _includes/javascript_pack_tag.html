@@ -17,18 +17,18 @@
 %}{%
   if src != ""
 %}{% assign bools = "async,defer,nomodule" | split: "," %}
-<script src="{{ src }}" {%
+<script src="{{ src }}"{%
   if integrity != ""
-%}integrity="{{ integrity }}" {%
+%} integrity="{{ integrity }}"{%
   endif
 %}{%
   for attr in bools
   %}{%
-    if include[attr] %}{{ attr }} {% endif %}{%
+    if include[attr] %} {{ attr }}{% endif %}{%
   endfor
 %}{%
   if include.type
-%}type="{{ include.type }}" {%
+%} type="{{ include.type }}"{%
   endif
 %}></script>
 {% else %}
