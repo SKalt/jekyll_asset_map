@@ -1,0 +1,18 @@
+{% capture result %}
+  {% capture asset_map_name %}{{
+    include.asset_map
+      | default: page.asset_map.name
+      | default: site.asset_map.name
+      | default: "manifest"
+  }}{% endcapture %}
+  {% assign asset_map = site.data[asset_map_name] %}
+  {% assign asset = asset_map[include.asset_name] %}
+  {% if asset %}
+    {{ asset.path
+      | default: asset.src
+      | default: asset.href
+      | default: asset.asset
+      | default: asset
+    }}
+  {% endif %}
+{% endcapture %}{{ result | strip }}

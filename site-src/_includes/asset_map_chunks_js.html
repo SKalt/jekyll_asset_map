@@ -15,7 +15,10 @@
         {% endfor %}
         {% assign chunks = _entrypoints | map: asset_key | uniq %}
       {% else %}
-        <!-- WARNING! no entrypoint map found -->
+        {% include asset_map_error.html
+            message="Error! No entrypoint map found"
+            error=include.error
+        %}
       {% endif %}
       {% for chunk in chunks %}{%
         assign src = chunk.path
@@ -45,15 +48,18 @@
             endif
           %}></script>{%
             else
-          %}<!-- WARNING! no useable source for chunk {{ chunk }} -->{%
+          %}{% include asset_map_error.html message="WARNING! no useable source for chunk {{ chunk }}" error=include.error %}{%
           endif
         %}{%
         endfor
       %}
     {% else %}
-      <!-- WARNING! no asset map named {{ asset_map_name }} -->
+      {% include asset_map_error.html message="WARNING! no asset map named {{ asset_map_name }}" error=include.error %}
     {% endif %}
   {% else %}
-    <!-- WARNING: no entrypoints supplied -->
+   {% include asset_map_error.html
+      message="WARNING: no entrypoints supplied"
+      error=include.error
+    %}
   {% endif %}
 {% endcapture %}{{ result | strip }}

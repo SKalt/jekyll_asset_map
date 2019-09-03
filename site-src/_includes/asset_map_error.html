@@ -1,0 +1,23 @@
+{% capture result %}
+  {% assign asset_name = include.asset_name %}
+  {% assign message = include.message %}
+  {% unless jekyll.environment == "production" %}
+    {% assign error = include.error
+      | default: site.asset_map.error
+      | default: "alert"
+    %}
+    {% unless message %}
+      {% capture message %}
+        WARNING! missing {{ include.type }} pack named {{ include.asset_name }}
+      {% endcapture %}
+    {% endunless %}
+    {% case error %}
+      {% when "alert" %}<script>alert("{{ message | replace: '"', '\\"' }}")</script>
+      {% when "error" %}<script>throw new Error("{{ message | replace: '"', '\\"' }}")</script>
+      {% when "comment" %}<!-- {{ message | xml_escape }} -->
+      {% when "fail" %}<script src="/pack/does/not/exist/{{ asset_name | cgi_escape }}"></script>
+    {% endcase %}
+  {% else %}
+    <script src="/pack/does/not/exist/{{ asset_name | cgi_escape }}"></script>
+  {% endunless %}
+{% endcapture %}{{ result | strip }}

@@ -1,0 +1,12 @@
+{% unless jekyll.environment == "development" %}{%
+  capture asset_map_name
+%}{{
+  include.asset_map
+    | default: site.asset_map.name
+    | default: page.asset_map.name
+    | default: "manifest"
+  }}{%
+  endcapture
+%}{%
+  assign asset_map = site.data[asset_map_name]
+%}{{ asset_map[include.asset_name].integrity }}{% endunless %}

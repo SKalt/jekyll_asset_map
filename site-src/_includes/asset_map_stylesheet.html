@@ -1,0 +1,28 @@
+{% capture result %}
+  {% capture href %}{%
+    include asset_map_path.html
+      asset_map=include.asset_map
+      asset_name=include.asset_name
+  %}{% endcapture %}
+  {% capture integrity %}{%
+    include asset_map_integrity.html
+      asset_map=include.asset_map
+      asset_name=include.asset_name
+  %}{% endcapture %}
+  {% if href != "" %}
+    {% assign echoed = "crossorigin,importance,media" | split: "," %}
+    <link rel="stylesheet" href="{{ href }}"{%
+      if integrity != ""
+    %} integrity="{{ integrity }}" {%
+      endif
+    %}{%
+      for echo in echoed
+      %}{% if include[echo] %} {{ echo }}="{{ include[echo] }}"{% endif %}{%
+      endfor
+    %}>
+  {% else %}
+    {% include asset_map_error.html
+        asset_name=include.asset_name
+        error=include.error
+    %}
+  {% endif %}

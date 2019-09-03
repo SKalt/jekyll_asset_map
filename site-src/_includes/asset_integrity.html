@@ -1,7 +1,0 @@
-{%
-  capture asset_map_name
-%}{{ include.asset_map | default: 'manifest'}}{%
-  endcapture
-%}{%
-  assign asset_map = site.data[asset_map_name]
-%}{{ asset_map[include.asset_name].integrity }}
