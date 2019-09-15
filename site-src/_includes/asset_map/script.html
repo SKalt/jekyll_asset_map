@@ -1,11 +1,11 @@
 {% capture result %}
-  {% capture src %}{% include asset_map_path.html
+  {% capture src %}{% include asset_map/path.html
         asset_map=include.asset_map
         asset_name=include.asset_name
   %}{% endcapture %}
   {% if src != "" %}
     {% capture integrity %}{%
-      include asset_map_integrity.html
+      include asset_map/integrity.html
         asset_map=include.asset_map
         asset_name=include.asset_name
     %}{% endcapture %}
@@ -26,6 +26,6 @@
     endfor
   %}></script>
   {% else %}
-    {% include asset_map_error.html asset_name=asset_name type="javascript" %}
+    {% include asset_map/error.html asset_name=asset_name type="javascript" %}
   {% endif %}
 {% endcapture %}{{ result | strip }}

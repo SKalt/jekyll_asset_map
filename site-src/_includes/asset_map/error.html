@@ -12,7 +12,7 @@
       {% endcapture %}
     {% endunless %}
     {% case error %}
-      {% when "alert" %}<script>alert("{{ message | replace: '"', '\\"' }}")</script>
+      {% when "alert" %}<script>alert("{{ message | strip | replace: '"', '\\"' }}")</script>
       {% when "error" %}<script>throw new Error("{{ message | replace: '"', '\\"' }}")</script>
       {% when "comment" %}<!-- {{ message | xml_escape }} -->
       {% when "fail" %}<script src="/pack/does/not/exist/{{ asset_name | cgi_escape }}"></script>

@@ -1,11 +1,11 @@
 {% capture result %}
   {% capture href %}{%
-    include asset_map_path.html
+    include asset_map/path.html
       asset_map=include.asset_map
       asset_name=include.asset_name
   %}{% endcapture %}
   {% capture integrity %}{%
-    include asset_map_integrity.html
+    include asset_map/integrity.html
       asset_map=include.asset_map
       asset_name=include.asset_name
   %}{% endcapture %}
@@ -21,7 +21,7 @@
       endfor
     %}>
   {% else %}
-    {% include asset_map_error.html
+    {% include asset_map/error.html
         asset_name=include.asset_name
         error=include.error
     %}

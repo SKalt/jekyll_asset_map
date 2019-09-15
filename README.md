@@ -2,14 +2,28 @@
 > rails-webpacker's asset inclusion tags as a jekyll \_include
 
 ## When to use this
-If you've got an existing site in Jekyll and want to use some of the hot new tools from the JS ecosystem without completely rewriting your build process.
+You should use this if
 
-If you're going to process your HTML with some tool that runs in Node.js, that tool likely has its own asset map implementation.
+[ ] you've got an existing site written in Jekyll and
+
+[ ] you want to use some of the hot new tools from the JS ecosystem
+
+[ ] but you don't want to completely rewrite your build process.
+
+If you're going to process your HTML with some tool that runs in Node.js (webpack, rollup, parcel, gulp, or anything else), that tool likely has its own asset map implementation.
 
 ## Quickstart
 
-```
-curl
+```sh
+#!/usr/bin/env bash
+# TODO
+# install.sh
+ASSET_MAP_VERSION="${ASSET_MAP_VERSION:-1.0.0}";
+# ^ must always specify a full semver number
+TARGET_LOCATION="${1:-./}"
+curl -o https://raw.githubusercontent.com/
 ```
 
-## Development
+# [Documentation](./docs/index.md)
+<!-- TODO: move to actual site link? -->
+# [Contributing and development](./CONTRIBUTING.md)

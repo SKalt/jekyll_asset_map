@@ -2,9 +2,9 @@
   {% if include.entrypoints %}
     {% assign sep = include.sep | default: "," %}
     {% assign entrypoints = include.entrypoints | split: sep %}
-    {% assign asset_map_name = include.asset_map_name | default: "manifest" %}
+    {% assign asset_map_name = include.asset_map | default: "manifest" %}
     {% assign asset_map = site.data[asset_map_name] %}
-    {% assign asset_key = include.asset_key | default: "css" %}
+    {% assign asset_key = include.asset_key | default: "js" %}
     {% if asset_map %}
       {% assign entrypoint_key = include.entrypoint_key | default: "entrypoints" %}
       {% assign entrypoint_map = asset_map[entrypoint_key] %}
@@ -15,26 +15,26 @@
         {% endfor %}
         {% assign chunks = _entrypoints | map: asset_key | uniq %}
       {% else %}
-        {% include asset_map_error.html
+        {% include asset_map/error.html
             message="Error! No entrypoint map found"
             error=include.error
         %}
       {% endif %}
       {% for chunk in chunks %}{%
-        assign href = chunk.path
-          | default: chunk.href
+        assign src = chunk.path
           | default: chunk.src
+          | default: chunk.href
           | default: chunk.asset
           | default: chunk
         %}{%
-          if href
+          if src
           %}{%
-              echoed = "crossorigin,importance,media" | split: ","
-            %}<link rel="stylesheet" href="{{ href }}"{%
-            for echo in echoed
+            assign bools = "async,defer,nomodule" | split: ","
+            %}<script src="{{ src }}"{%
+            for _bool in bools
             %}{%
-              if include[echo]
-                %} {{ echo }}="{{ include[echo] }}"{%
+              if include[_bool]
+                %} {{ _bool }}{%
               endif
               %}{%
             endfor
@@ -46,20 +46,20 @@
             if include.type
           %} type="{{ include.type }}"{%
             endif
-          %}>{%
+          %}></script>{%
             else
-          %}{%
-            include asset_map_error.html
-              message="Warning! No entrypoint named {{ entrypoint }} found in {{ asset_map_name }}#{{ entrypoint_key }}."
-            %}{%
+          %}{% include asset_map/error.html message="WARNING! no useable source for chunk {{ chunk }}" error=include.error %}{%
           endif
         %}{%
         endfor
       %}
     {% else %}
-      {% include asset_map_error.html message="WARNING! No asset map named {{ asset_map_name }}" %}
+      {% include asset_map/error.html message="WARNING! no asset map named {{ asset_map_name }}" error=include.error %}
     {% endif %}
   {% else %}
-    {% include asset_map_error.html message="WARNING: no entrypoints supplied" %}
+   {% include asset_map/error.html
+      message="WARNING: no entrypoints supplied"
+      error=include.error
+    %}
   {% endif %}
 {% endcapture %}{{ result | strip }}

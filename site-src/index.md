@@ -1,53 +1,62 @@
 ---
+variable: "asset_map/script.html"
+args:
+  asset_name: "foo.js"
+  asset_map:
+my_variable: "test.md"
 ---
 
-<pre><code>{% raw %}{% include asset_map_script.html asset_name="foo.js" %}{% endraw %}</code></pre>
+{% include test_case/instance.html test="asset_map/script.html" asset_name="foo.js" %}
+<hr>
+<br>
+
+<pre><code>{% raw %}{% include asset_map/script.html asset_name="foo.js" %}{% endraw %}</code></pre>
 {% capture output %}
-  {% include asset_map_script.html asset_name="foo.js" %}
+  {% include asset_map/script.html asset_name="foo.js" %}
 {% endcapture %}
 <pre><code>{{ output | strip | escape }}</code></pre>
 
 <hr>
 <br>
 
-<pre><code>{% raw %}{% include asset_map_script.html asset_name="foo.js" async=false %}{% endraw %}</code></pre>
+<pre><code>{% raw %}{% include asset_map/script.html asset_name="foo.js" async=false %}{% endraw %}</code></pre>
 {% capture output %}
-  {% include asset_map_script.html asset_name="foo.js" async=false %}
+  {% include asset_map/script.html asset_name="foo.js" async=false %}
 {% endcapture %}
 <pre><code>{{ output | strip | escape }}</code></pre>
 
 <hr>
 <br>
 
-<pre><code>{% raw %}{% include asset_map_script.html asset_name="quux.js" %}{% endraw %}</code></pre>
+<pre><code>{% raw %}{% include asset_map/script.html asset_name="quux.js" %}{% endraw %}</code></pre>
 {% capture output %}
-  {% include asset_map_script.html asset_name="quux.js" %}
+  {% include asset_map/script.html asset_name="quux.js" %}
 {% endcapture %}
 <pre><code>{{ output | strip | escape }}</code></pre>
 
 <hr>
 <br>
 
-<pre><code>{% raw %}{% include asset_map_path.html asset_name="foo.js" %}{% endraw %}</code></pre>
+<pre><code>{% raw %}{% include asset_map/path.html asset_name="foo.js" %}{% endraw %}</code></pre>
 {% capture output %}
-  {% include asset_map_path.html asset_name="foo.js" %}
+  {% include asset_map/path.html asset_name="foo.js" %}
 {% endcapture %}
 <pre><code>{{ output | strip | escape }}</code></pre>
 
 <hr>
 <br>
 
-<pre><code>{% raw %}{% include asset_map_script.html asset_name="bar.js" %}{% endraw %}</code></pre>
+<pre><code>{% raw %}{% include asset_map/script.html asset_name="bar.js" %}{% endraw %}</code></pre>
 {% capture output %}
-{% include asset_map_script.html asset_name="bar.js" %}
+{% include asset_map/script.html asset_name="bar.js" %}
 {% endcapture %}
 <pre><code>{{ output | strip | escape }}</code></pre>
 
 <hr>
 <br>
 
-<pre><code>{% raw %}{% include asset_map_chunks_js.html entrypoints="app1,app2"%}{% endraw %}</code></pre>
+<pre><code>{% raw %}{% include asset_map/chunks_js.html entrypoints="app1,app2"%}{% endraw %}</code></pre>
 {% capture output %}
-{% include asset_map_chunks_js.html entrypoints="app1,app2"%}
+{% include asset_map/chunks_js.html entrypoints="app1,app2"%}
 {% endcapture %}
 <pre><code>{{ output | strip | escape }}</code></pre>
