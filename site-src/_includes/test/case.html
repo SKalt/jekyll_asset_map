@@ -8,8 +8,8 @@
 {% capture output %}
   {%
     include {{ include.test }}
-      asset_map=include.map
-      asset_name=include.name
+      map=include.map
+      name=include.name
       sep=include.sep
       asset_key=include.key
       entrypoint_key=include.entrypoint_key

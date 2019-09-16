@@ -8,7 +8,7 @@
     %}
     {% unless message %}
       {% capture message %}
-        WARNING! missing {{ include.type }} pack named {{ include.name }}
+        WARNING! missing {{ include.type }} pack named {{ asset_name }}
       {% endcapture %}
     {% endunless %}
     {% case error %}

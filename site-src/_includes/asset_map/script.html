@@ -1,13 +1,13 @@
 {% capture result %}
   {% capture src %}{% include asset_map/path.html
-        asset_map=include.map
-        asset_name=include.name
+        map=include.map
+        name=include.name
   %}{% endcapture %}
   {% if src != "" %}
     {% capture integrity %}{%
       include asset_map/integrity.html
-        asset_map=include.map
-        asset_name=include.name
+        map=include.map
+        name=include.name
     %}{% endcapture %}
     {% assign bools = "async,defer,nomodule" | split: "," %}
     {% assign echoed = "type,crossorigin,referrerpolicy" | split: "," %}
@@ -27,7 +27,7 @@
     %}></script>
   {% else %}
     {% include asset_map/error.html
-        asset_name=include.name
+        name=include.name
         type="javascript"
         error=include.error
     %}
