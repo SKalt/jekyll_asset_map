@@ -6,5 +6,4 @@
       name=i.title
       content=i.content
   %}
-  {{ i.content }}
 {% endfor %}
