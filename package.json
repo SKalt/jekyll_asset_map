@@ -3,11 +3,14 @@
     "cheerio": "^1.0.0-rc.3",
     "jest": "^24.9.0",
     "rollup": "^1.20.3",
+    "rollup-plugin-output-manifest": "^1.0.0",
+    "rollup-plugin-sass": "^1.2.2",
     "webpack": "^4.40.2",
     "webpack-assets-manifest": "^3.1.1",
     "webpack-manifest-plugin": "^2.0.4"
   },
   "scripts": {
+    "build:rollup": "rollup -c site-src/examples/rollup/rollup.config.js",
     "test": "jest"
   }
 }

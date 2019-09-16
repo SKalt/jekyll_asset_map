@@ -1,0 +1,14 @@
+.test {
+  .test-input {
+    &::before {
+      content: "input";
+      color: "red";
+    }
+  }
+  .test-output {
+    &::before {
+      content: "output";
+      color: "blue";
+    }
+  }
+}
