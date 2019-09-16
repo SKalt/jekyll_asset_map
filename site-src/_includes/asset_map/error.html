@@ -1,5 +1,5 @@
 {% capture result %}
-  {% assign asset_name = include.asset_name %}
+  {% assign asset_name = include.name %}
   {% assign message = include.message %}
   {% unless jekyll.environment == "production" %}
     {% assign error = include.error
@@ -8,7 +8,7 @@
     %}
     {% unless message %}
       {% capture message %}
-        WARNING! missing {{ include.type }} pack named {{ include.asset_name }}
+        WARNING! missing {{ include.type }} pack named {{ include.name }}
       {% endcapture %}
     {% endunless %}
     {% case error %}

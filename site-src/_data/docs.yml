@@ -1,0 +1,100 @@
+path:
+  arguments:
+    map: &arg_map
+      required: false
+      type: string
+      description: The name of the asset map hash table within `site.data`.
+      defaults:
+        - 'include.map'
+        - 'page.asset_map.name'
+        - 'site.asset_map.name'
+        - '"manifest"'
+    name: &arg_name
+      required: true
+      type: string
+      description: The name of the asset within the asset map.
+error:
+  arguments:
+    message:
+      required: false
+      type: string
+      description: A specific error message.
+      defaults:
+        - '"WARNING! missing { include.type } pack named { name }"'
+    error: &arg_error
+      required: false
+      type: one of "alert", "error", "comment", or "fail"
+      description: What kind of error to raise.
+      defaults:
+        - 'include.error'
+        - 'site.asset_map.error'
+        - '"alert"'
+    type:
+      required: false
+      type: string
+      description: the asset type (e.g. css, js).
+      defaults:
+        - '""'
+script:
+  arguments:
+    map: *arg_map
+    name: *arg_name
+    script_tag_props: &arg_script_tag_props
+      required: false
+      type: 'bool or string'
+      description: 'Other script tag properties: [async](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-async), [defer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-defer), [nomodule](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-nomodule), [type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-type), [crossorigin](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-crossorigin), [referrerpolicy](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-referrerpolicy).  '
+      defaults:
+        - 'false/blank'
+stylesheet:
+  arguments:
+    map: *arg_map
+    name: *arg_name
+    error: *arg_error
+integrity:
+  arguments:
+    map: *arg_map
+    name: *arg_name
+chunks_js:
+  arguments:
+    map: *arg_map
+    entrypoints: &arg_entrypoints
+      required: true
+      type: string
+      description: a list of entrypoint names, separated by `include.sep` or commas. Whitespace-sensitive.
+    sep: &arg_sep
+      required: false
+      type: string
+      description: the string that separates the entrypoint names in `include.entrypoints`.
+      defaults:
+        - '","'
+    asset_key:
+      required: false
+      type: string
+      defaults:
+        - '"js"'
+    entrypoint_key:
+      required: false
+      type: string
+      defaults:
+        - '"entrypoints"'
+      description: where within the asset map to look for the arrays of chunks that make up your entrypoints.
+    error: *arg_error
+    "other script tag attrs": *arg_script_tag_props
+chunks_css:
+  arguments:
+    map: *arg_map
+    entrypoints: *arg_entrypoints
+    sep: *arg_sep
+    asset_key:
+      required: false
+      type: string
+      defaults:
+        - '"css"'
+    entrypoint_key:
+      required: false
+      type: string
+      defaults:
+        - '"entrypoints"'
+      description: where within the asset map to look for the arrays of chunks that make up your entrypoints.
+    error: *arg_error
+    "...other stylesheet tag attrs": *arg_script_tag_props

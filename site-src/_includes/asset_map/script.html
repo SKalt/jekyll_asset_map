@@ -1,31 +1,35 @@
 {% capture result %}
   {% capture src %}{% include asset_map/path.html
-        asset_map=include.asset_map
-        asset_name=include.asset_name
+        asset_map=include.map
+        asset_name=include.name
   %}{% endcapture %}
   {% if src != "" %}
     {% capture integrity %}{%
       include asset_map/integrity.html
-        asset_map=include.asset_map
-        asset_name=include.asset_name
+        asset_map=include.map
+        asset_name=include.name
     %}{% endcapture %}
-  {% assign bools = "async,defer,nomodule" | split: "," %}
-  {% assign echoed = "type,crossorigin" | split: "," %}
-  <script src="{{ src }}"{%
-    if integrity != ""
-  %} integrity="{{ integrity }}"{%
-    endif
-  %}{%
-    for attr in echoed %}{%
-      if include[attr] %} {{ attr }}="{{ include[attr] }}"{% endif %}{%
-    endfor
+    {% assign bools = "async,defer,nomodule" | split: "," %}
+    {% assign echoed = "type,crossorigin,referrerpolicy" | split: "," %}
+    <script src="{{ src }}"{%
+      if integrity != ""
+    %} integrity="{{ integrity }}"{%
+      endif
     %}{%
-    for attr in bools
-    %}{%
-      if include[attr] %} {{ attr }}{% endif %}{%
-    endfor
-  %}></script>
+      for attr in echoed %}{%
+        if include[attr] %} {{ attr }}="{{ include[attr] }}"{% endif %}{%
+      endfor
+      %}{%
+      for attr in bools
+      %}{%
+        if include[attr] %} {{ attr }}{% endif %}{%
+      endfor
+    %}></script>
   {% else %}
-    {% include asset_map/error.html asset_name=asset_name type="javascript" %}
+    {% include asset_map/error.html
+        asset_name=include.name
+        type="javascript"
+        error=include.error
+    %}
   {% endif %}
 {% endcapture %}{{ result | strip }}

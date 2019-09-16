@@ -2,7 +2,7 @@
   {% if include.entrypoints %}
     {% assign sep = include.sep | default: "," %}
     {% assign entrypoints = include.entrypoints | split: sep %}
-    {% assign asset_map_name = include.asset_map | default: "manifest" %}
+    {% assign asset_map_name = include.map | default: "manifest" %}
     {% assign asset_map = site.data[asset_map_name] %}
     {% assign asset_key = include.asset_key | default: "js" %}
     {% if asset_map %}
@@ -30,22 +30,25 @@
           if src
           %}{%
             assign bools = "async,defer,nomodule" | split: ","
-            %}<script src="{{ src }}"{%
-            for _bool in bools
             %}{%
-              if include[_bool]
-                %} {{ _bool }}{%
-              endif
-              %}{%
-            endfor
-          %}{%
+            assign echoed = "type,crossorigin,referrerpolicy" | split: ","
+            %}<script src="{{ src }}"{%
             if chunk.integrity
           %} integrity="{{ chunk.integrity }}"{%
             endif
           %}{%
-            if include.type
-          %} type="{{ include.type }}"{%
+            if integrity != ""
+          %} integrity="{{ integrity }}"{%
             endif
+          %}{%
+            for attr in echoed %}{%
+              if include[attr] %} {{ attr }}="{{ include[attr] }}"{% endif %}{%
+            endfor
+            %}{%
+            for attr in bools
+            %}{%
+              if include[attr] %} {{ attr }}{% endif %}{%
+            endfor
           %}></script>{%
             else
           %}{% include asset_map/error.html message="WARNING! no useable source for chunk {{ chunk }}" error=include.error %}{%

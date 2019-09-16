@@ -1,15 +1,15 @@
 {% comment %}
-  test the plugin against a variety of asset maps
+  test the plugin against a variety of asset maps. Only
 {% endcomment %}
 <details class="test" id="{{ include.id }}" open>
   <details class="test test--case" open>
     {%
-      include test_case/instance.html
+      include test/case.html
         test=include.test
         asset_map="manifest"
-        asset_name=include.asset_name
+        asset_name=include.name
         sep=include.sep
-        asset_key=include.asset_key
+        asset_key=include.key
         entrypoint_key=include.entrypoint_key
         error=include.error
         type=include.type
@@ -18,12 +18,12 @@
   </details>
   <details class="test test--case">
     {%
-      include test_case/instance.html
+      include test/case.html
         test=include.test
         asset_map="webpack-asset-manifest"
-        asset_name=include.asset_name
+        asset_name=include.name
         sep=include.sep
-        asset_key=include.asset_key
+        asset_key=include.key
         entrypoint_key=include.entrypoint_key
         error=include.error
         type=include.type
@@ -32,12 +32,12 @@
   </details>
   <details class="test test--case" open>
     {%
-      include test_case/instance.html
+      include test/case.html
         test=include.test
         asset_map="webpack-manifest-plugin"
-        asset_name=include.asset_name
+        asset_name=include.name
         sep=include.sep
-        asset_key=include.asset_key
+        asset_key=include.key
         entrypoint_key=include.entrypoint_key
         error=include.error
         type=include.type
