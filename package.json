@@ -18,6 +18,7 @@
   "scripts": {
     "build:rollup": "rollup -c site-src/examples/rollup/rollup.config.js",
     "build:webpack:assets-manifest": "webpack --config ./site-src/examples/webpack/assets-manifest.config.js --mode production ",
+    "build:webpack:manifest-plugin": "webpack --config ./site-src/examples/webpack/manifest-plugin.config.js --mode production ",
     "test": "jest"
   }
 }
