@@ -5,6 +5,8 @@
     "jest": "^24.9.0",
     "mini-css-extract-plugin": "^0.8.0",
     "rollup": "^1.20.3",
+    "rollup-plugin-output-manifest": "^1.0.0",
+    "rollup-plugin-sass": "^1.2.2",
     "sass": "^1.22.12",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
@@ -14,6 +16,7 @@
     "webpack-manifest-plugin": "^2.0.4"
   },
   "scripts": {
+    "build:rollup": "rollup -c site-src/examples/rollup/rollup.config.js",
     "build:webpack:assets-manifest": "webpack --config ./site-src/examples/webpack/assets-manifest.config.js --mode production ",
     "test": "jest"
   }
