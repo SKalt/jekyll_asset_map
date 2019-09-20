@@ -1,13 +1,20 @@
 {
   "devDependencies": {
     "cheerio": "^1.0.0-rc.3",
+    "css-loader": "^3.2.0",
     "jest": "^24.9.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "rollup": "^1.20.3",
+    "sass": "^1.22.12",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
     "webpack": "^4.40.2",
     "webpack-assets-manifest": "^3.1.1",
+    "webpack-cli": "^3.3.8",
     "webpack-manifest-plugin": "^2.0.4"
   },
   "scripts": {
+    "build:webpack:assets-manifest": "webpack --config ./site-src/examples/webpack/assets-manifest.config.js --mode production ",
     "test": "jest"
   }
 }
