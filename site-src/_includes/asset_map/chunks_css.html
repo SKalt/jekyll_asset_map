@@ -29,7 +29,7 @@
         %}{%
           if href
           %}{%
-              echoed = "crossorigin,importance,media" | split: ","
+              assign echoed = "crossorigin,importance,media" | split: ","
             %}<link rel="stylesheet" href="{{ href }}"{%
             for echo in echoed
             %}{%
@@ -48,9 +48,9 @@
             endif
           %}>{%
             else
-          %}{%
+          %}{% capture message %}Warning! No entrypoint named {{ entrypoint }} found in {{ asset_map_name }}#{{ entrypoint_key }}.{% endcapture %}{%
             include asset_map/error.html
-              message="Warning! No entrypoint named {{ entrypoint }} found in {{ asset_map_name }}#{{ entrypoint_key }}."
+              message=message
             %}{%
           endif
         %}{%

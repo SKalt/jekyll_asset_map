@@ -1,5 +1,5 @@
 {% capture result %}
-  {% assign asset_name = include.name %}
+  {% capture asset_name %}{{ include.name }}{% endcapture %}
   {% assign message = include.message %}
   {% unless jekyll.environment == "production" %}
     {% assign error = include.error
