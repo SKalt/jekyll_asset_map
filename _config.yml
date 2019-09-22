@@ -7,6 +7,14 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 collections:
   api:
+    order:
+      - path.md
+      - error.md
+      - script.md
+      - stylesheet.md
+      - integrity.md
+      - chunks_js.md
+      - chunks_css.md
 # Build settings
 markdown: kramdown
 
