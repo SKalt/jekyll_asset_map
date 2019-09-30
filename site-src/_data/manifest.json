@@ -7,12 +7,12 @@
   },
   "entrypoints": {
     "app1": {
-      "js": ["app.chunk.asdf.js", "app.chunk.jfdas.js"],
-      "css": ["app.chunk.qqwert.css", "app.chunk.uiopp.css"]
+      "js": ["app.chunk.1.js", "app.chunk.2.js"],
+      "css": ["app.chunk.1.css", "app.chunk.2.css"]
     },
     "app2": {
-      "js": ["app.chunk.asdf.js", "app.chunk.jfdas.js"],
-      "css": ["app.chunk.qqwert.css", "app.chunk.uiopp.css"]
+      "js": ["app.chunk.1.js", "app.chunk.3.js"],
+      "css": ["app.chunk.1.css", "app.chunk.3.css"]
     }
   }
 }

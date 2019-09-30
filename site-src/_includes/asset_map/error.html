@@ -6,11 +6,6 @@
       | default: site.asset_map.error
       | default: "alert"
     %}
-    {% unless message %}
-      {% capture message %}
-        WARNING! missing {{ include.type }} pack named {{ asset_name }}
-      {% endcapture %}
-    {% endunless %}
     {% case error %}
       {% when "alert" %}<script>alert("{{ message | strip | replace: '"', '\\"' }}")</script>
       {% when "error" %}<script>throw new Error("{{ message | replace: '"', '\\"' }}")</script>
@@ -18,6 +13,6 @@
       {% when "fail" %}<script src="/pack/does/not/exist/{{ asset_name | cgi_escape }}"></script>
     {% endcase %}
   {% else %}
-    <script src="/pack/does/not/exist/{{ asset_name | cgi_escape }}"></script>
+    <script src="//pack/does/not/exist/{{ asset_name | cgi_escape }}"></script>
   {% endunless %}
 {% endcapture %}{{ result | strip }}

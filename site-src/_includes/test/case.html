@@ -1,7 +1,16 @@
 {% capture input %}
 {% raw %}{%{% endraw %}
-  include {{ include.test | strip }}{% for kvp in include %}{% unless kvp[0] == 'test' %}
-    {{ kvp[0] }}="{{ kvp[1] }}"{% endunless %}{% endfor %}
+  include {{ include.test | strip }}{% for kvp in include %}{%
+    unless kvp[0] contains 'test'
+     %}{%
+       if kvp[1] == true or kvp[1] == false %}
+    {{ kvp[0] }}={{ kvp[1] }}{%
+       else
+       %}
+    {{ kvp[0] }}="{{ kvp[1] }}"{%
+       endif
+       %}{%
+    endunless %}{% endfor %}
 {% raw %}%}{% endraw %}
 {% endcapture %}
 
@@ -13,10 +22,28 @@
       sep=include.sep
       asset_key=include.key
       entrypoint_key=include.entrypoint_key
+      entrypoints=include.entrypoints
       error=include.error
       type=include.type
       message=include.message
+      async=include.async
+      defer=include.defer
+      nomodule=include.nomodule
+      type=include.type
+      crossorigin=include.crossorigin
+      referrerpolicy=include.referrerpolicy
+      importance=include.importance
+      media=include.media
   %}
 {% endcapture %}
-<pre class="test-input" ><code>{{ input | strip }}</code></pre>
-<pre class="test-output"><code>{{ output | strip | escape }}</code></pre>
+<div class="test"><div class="test-input"><span class="text-input--annotation"></span><pre><code>{{
+  input | strip
+}}</code></pre></div><div  class="test-output"><span class="text-output--annotation"></span><pre><code>{{
+  output
+    | strip
+    | replace: "><", ">
+<"
+    | replace: ">
+</", "></"
+    | escape
+}}</code></pre></div></div>

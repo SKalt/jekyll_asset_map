@@ -1,6 +1,5 @@
 ---
 ---
-
 {%
   include test/case.html
     test="asset_map/error.html"
@@ -30,7 +29,7 @@
     test="asset_map/error.html"
     test_case_name="error_fail"
     error="fail"
-    type="this failed. Here's why:..."
+    name="a-missing-pack.js"
 %}
 <!-- ^ fail uses   -->
 

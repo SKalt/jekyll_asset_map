@@ -1,5 +1,6 @@
 ---
 ---
+Chunks shared between entrypoints are deduplicated.  Here, `app1` and `app2` share `app.chunk.1.js`.  
 {%
   include test/case.html
     test="asset_map/chunks_js.html"
@@ -7,7 +8,7 @@
     entrypoints="app1,app2"
 %}
 
-Missing...
+Missing entrypoints cause an error
 {%
   include test/case.html
     test="asset_map/chunks_js.html"

@@ -10,17 +10,41 @@
       {% assign entrypoint_map = asset_map[entrypoint_key] %}
       {% if entrypoint_map %}
         {% assign _entrypoints = "" | split: "" %}
-        {% for entrypoint in entrypoints %}
-          {% assign _entrypoints = _entrypoints | push: entrypoint_map[entrypoint] %}
-        {% endfor %}
-        {% assign chunks = _entrypoints | map: asset_key | uniq %}
-      {% else %}
-        {% include asset_map/error.html
-            message="Error! No entrypoint map found"
-            error=include.error
-        %}
-      {% endif %}
-      {% for chunk in chunks %}{%
+        {%
+          for entrypoint in entrypoints
+          %}{%
+          assign _entrypoint = entrypoint_map[entrypoint]
+          %}{%
+          if _entrypoint
+          %}{%
+            assign _entrypoints = _entrypoints | push: _entrypoint
+          %}{%
+          else
+          %}{%
+              capture message
+            %}Warning! No entrypoint named {{ entrypoint }} found in {{ asset_map_name }}#{{ entrypoint_key }}.{%
+              endcapture
+            %}{%
+              include asset_map/error.html
+                message=message
+                error=include.error
+            %}{%
+          endif
+        %}{%
+        endfor
+        %}{%
+        assign chunks = _entrypoints | map: asset_key | uniq
+      %}{%
+        else
+      %}{%
+        include asset_map/error.html
+          message="Error! No entrypoint map found"
+          error=include.error
+      %}{%
+        endif
+      %}{%
+        for chunk in chunks
+      %}{%
         assign href = chunk.path
           | default: chunk.href
           | default: chunk.src
@@ -48,18 +72,28 @@
             endif
           %}>{%
             else
-          %}{% capture message %}Warning! No entrypoint named {{ entrypoint }} found in {{ asset_map_name }}#{{ entrypoint_key }}.{% endcapture %}{%
+          %}{% capture message %}Warning! Nil chunk found in {{ asset_map_name }}#{{ entrypoint_key }}.{% endcapture %}{%
             include asset_map/error.html
               message=message
+              error=include.error
             %}{%
           endif
         %}{%
         endfor
       %}
     {% else %}
-      {% include asset_map/error.html message="WARNING! No asset map named {{ asset_map_name }}" %}
+      {% capture message %}WARNING! No asset map named {{ asset_map_name }}.{% endcapture %}
+      {%
+        include asset_map/error.html
+          message=message
+          error=include.error
+        %}
     {% endif %}
   {% else %}
-    {% include asset_map/error.html message="WARNING: no entrypoints supplied" %}
+    {%
+      include asset_map/error.html
+        message="WARNING: no entrypoints supplied"
+        error=include.error
+    %}
   {% endif %}
 {% endcapture %}{{ result | strip }}

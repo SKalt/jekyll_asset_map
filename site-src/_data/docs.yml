@@ -14,13 +14,12 @@ path:
       type: string
       description: The name of the asset within the asset map.
 error:
+  description: "There are four errors you can throw, from most severe to least: `alert`, `error`, `comment`, and `404`. All `asset_map/*` includes respect the same options for an `error` parameter."
   arguments:
     message:
-      required: false
+      required: true
       type: string
       description: A specific error message.
-      defaults:
-        - '"WARNING! missing { include.type } pack named { name }"'
     error: &arg_error
       required: false
       type: one of "alert", "error", "comment", or "fail"
@@ -29,16 +28,11 @@ error:
         - 'include.error'
         - 'site.asset_map.error'
         - '"alert"'
-    type:
-      required: false
-      type: string
-      description: the asset type (e.g. css, js).
-      defaults:
-        - '""'
 script:
   arguments:
     map: *arg_map
     name: *arg_name
+    error: *arg_error
     script_tag_props: &arg_script_tag_props
       required: false
       type: 'bool or string'
@@ -79,7 +73,7 @@ chunks_js:
         - '"entrypoints"'
       description: where within the asset map to look for the arrays of chunks that make up your entrypoints.
     error: *arg_error
-    "other script tag attrs": *arg_script_tag_props
+    "...other script tag attrs": *arg_script_tag_props
 chunks_css:
   arguments:
     map: *arg_map

@@ -33,12 +33,8 @@
             %}{%
             assign echoed = "type,crossorigin,referrerpolicy" | split: ","
             %}<script src="{{ src }}"{%
-            if chunk.integrity
+            if chunk.integrity and chunk.integrity != ""
           %} integrity="{{ chunk.integrity }}"{%
-            endif
-          %}{%
-            if integrity != ""
-          %} integrity="{{ integrity }}"{%
             endif
           %}{%
             for attr in echoed %}{%
@@ -51,13 +47,20 @@
             endfor
           %}></script>{%
             else
-          %}{% include asset_map/error.html message="WARNING! no useable source for chunk {{ chunk }}" error=include.error %}{%
+          %}{%
+              capture message
+                %}WARNING! no useable source for chunk {{ chunk }}{%
+              endcapture
+            %}{%
+              include asset_map/error.html message=message error=include.error
+              %}{%
           endif
         %}{%
         endfor
       %}
     {% else %}
-      {% include asset_map/error.html message="WARNING! no asset map named {{ asset_map_name }}" error=include.error %}
+      {% capture message %}WARNING! no asset map named {{ asset_map_name }}{% endcapture %}
+      {% include asset_map/error.html message=message error=include.error %}
     {% endif %}
   {% else %}
    {% include asset_map/error.html

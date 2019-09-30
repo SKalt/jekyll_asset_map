@@ -11,6 +11,7 @@
     %}{% endcapture %}
     {% assign bools = "async,defer,nomodule" | split: "," %}
     {% assign echoed = "type,crossorigin,referrerpolicy" | split: "," %}
+    {{ include.asyc }}
     <script src="{{ src }}"{%
       if integrity != ""
     %} integrity="{{ integrity }}"{%
@@ -26,9 +27,14 @@
       endfor
     %}></script>
   {% else %}
+    {%
+      capture message
+    %}WARNING! Missing script pack named {{ include.name }}{%
+      endcapture
+    %}
     {% include asset_map/error.html
         name=include.name
-        type="javascript"
+        message=message
         error=include.error
     %}
   {% endif %}
