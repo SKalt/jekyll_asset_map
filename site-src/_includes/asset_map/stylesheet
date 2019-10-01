@@ -1,11 +1,11 @@
 {% capture result %}
   {% capture href %}{%
-    include asset_map/path.html
+    include asset_map/path
       map=include.map
       name=include.name
   %}{% endcapture %}
   {% capture integrity %}{%
-    include asset_map/integrity.html
+    include asset_map/integrity
       asset_map=include.map
       asset_name=include.name
   %}{% endcapture %}
@@ -26,7 +26,7 @@
       %}WARNING! missing stylesheet pack named {{ include.name }}{%
       endcapture
     %}
-    {% include asset_map/error.html
+    {% include asset_map/error
         name=include.name
         message=message
         error=include.error

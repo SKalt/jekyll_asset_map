@@ -14,9 +14,9 @@ __{{ arg[0] }}__: _{% if args[1].required %}required{% else %}optional{% endif %
 {% endif %}
 {% endfor %}
 {% endcapture%}
-<details open id="docs-{{ name }}" class="docs" >
+<details id="docs-{{ name }}" class="docs" >
   <summary>
-    <h2><code>asset_map/{{ name }}.html</code></h2>
+    <h2><code>asset_map/{{ name }}</code></h2>
   </summary>
   {{ site.data.docs[name].description | markdownify }}
   <details open id="docs-{{ name }}-args" class="docs docs--args"><summary>Arguments</summary>

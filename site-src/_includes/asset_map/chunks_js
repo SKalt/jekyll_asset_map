@@ -15,7 +15,7 @@
         {% endfor %}
         {% assign chunks = _entrypoints | map: asset_key | uniq %}
       {% else %}
-        {% include asset_map/error.html
+        {% include asset_map/error
             message="Error! No entrypoint map found"
             error=include.error
         %}
@@ -52,7 +52,7 @@
                 %}WARNING! no useable source for chunk {{ chunk }}{%
               endcapture
             %}{%
-              include asset_map/error.html message=message error=include.error
+              include asset_map/error message=message error=include.error
               %}{%
           endif
         %}{%
@@ -60,10 +60,10 @@
       %}
     {% else %}
       {% capture message %}WARNING! no asset map named {{ asset_map_name }}{% endcapture %}
-      {% include asset_map/error.html message=message error=include.error %}
+      {% include asset_map/error message=message error=include.error %}
     {% endif %}
   {% else %}
-   {% include asset_map/error.html
+   {% include asset_map/error
       message="WARNING: no entrypoints supplied"
       error=include.error
     %}

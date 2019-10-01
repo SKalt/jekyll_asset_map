@@ -1,11 +1,11 @@
 {% capture result %}
-  {% capture src %}{% include asset_map/path.html
+  {% capture src %}{% include asset_map/path
         map=include.map
         name=include.name
   %}{% endcapture %}
   {% if src != "" %}
     {% capture integrity %}{%
-      include asset_map/integrity.html
+      include asset_map/integrity
         map=include.map
         name=include.name
     %}{% endcapture %}
@@ -32,7 +32,7 @@
     %}WARNING! Missing script pack named {{ include.name }}{%
       endcapture
     %}
-    {% include asset_map/error.html
+    {% include asset_map/error
         name=include.name
         message=message
         error=include.error

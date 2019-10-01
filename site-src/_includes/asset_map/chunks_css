@@ -25,7 +25,7 @@
             %}Warning! No entrypoint named {{ entrypoint }} found in {{ asset_map_name }}#{{ entrypoint_key }}.{%
               endcapture
             %}{%
-              include asset_map/error.html
+              include asset_map/error
                 message=message
                 error=include.error
             %}{%
@@ -37,7 +37,7 @@
       %}{%
         else
       %}{%
-        include asset_map/error.html
+        include asset_map/error
           message="Error! No entrypoint map found"
           error=include.error
       %}{%
@@ -73,7 +73,7 @@
           %}>{%
             else
           %}{% capture message %}Warning! Nil chunk found in {{ asset_map_name }}#{{ entrypoint_key }}.{% endcapture %}{%
-            include asset_map/error.html
+            include asset_map/error
               message=message
               error=include.error
             %}{%
@@ -84,14 +84,14 @@
     {% else %}
       {% capture message %}WARNING! No asset map named {{ asset_map_name }}.{% endcapture %}
       {%
-        include asset_map/error.html
+        include asset_map/error
           message=message
           error=include.error
         %}
     {% endif %}
   {% else %}
     {%
-      include asset_map/error.html
+      include asset_map/error
         message="WARNING: no entrypoints supplied"
         error=include.error
     %}
