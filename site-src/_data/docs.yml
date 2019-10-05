@@ -33,10 +33,10 @@ script:
     map: *arg_map
     name: *arg_name
     error: *arg_error
-    script_tag_props: &arg_script_tag_props
+    "...other script tag attrs": &arg_script_tag_attrs
       required: false
       type: 'bool or string'
-      description: 'Other script tag properties: [async](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-async), [defer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-defer), [nomodule](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-nomodule), [type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-type), [crossorigin](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-crossorigin), [referrerpolicy](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-referrerpolicy).  '
+      description: 'Other script tag attributes: [async](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-async), [defer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-defer), [nomodule](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-nomodule), [type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-type), [crossorigin](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-crossorigin), [referrerpolicy](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-referrerpolicy).  '
       defaults:
         - 'false/blank'
 stylesheet:
@@ -44,6 +44,12 @@ stylesheet:
     map: *arg_map
     name: *arg_name
     error: *arg_error
+    "...other stylesheet tag attrs": &arg_stylesheet_tag_attrs
+      required: false
+      type: 'bool or string'
+      description: 'Other `<link rel="stylesheet">` attributes: [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#attr-crossorigin), [`importance`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#attr-importance), [media](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#attr-media), [type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#attr-type).'
+      defaults:
+        - 'false/blank'
 integrity:
   arguments:
     map: *arg_map
@@ -73,7 +79,7 @@ chunks_js:
         - '"entrypoints"'
       description: where within the asset map to look for the arrays of chunks that make up your entrypoints.
     error: *arg_error
-    "...other script tag attrs": *arg_script_tag_props
+    "...other script tag attrs": *arg_script_tag_attrs
 chunks_css:
   arguments:
     map: *arg_map
@@ -91,4 +97,4 @@ chunks_css:
         - '"entrypoints"'
       description: where within the asset map to look for the arrays of chunks that make up your entrypoints.
     error: *arg_error
-    "...other stylesheet tag attrs": *arg_script_tag_props
+    "...other stylesheet tag attrs": *arg_script_tag_attrs
