@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`asset_map chunks_css_include 1`] = `
+"<link rel=\\"stylesheet\\" href=\\"app.chunk.1.css\\">
+<link rel=\\"stylesheet\\" href=\\"app.chunk.2.css\\">
+<link rel=\\"stylesheet\\" href=\\"app.chunk.3.css\\">
+"
+`;
+
+exports[`asset_map chunks_css_include 2`] = `
+"<link rel=\\"stylesheet\\" href=\\"app.chunk.1.css\\">
+<link rel=\\"stylesheet\\" href=\\"app.chunk.2.css\\">
+<link rel=\\"stylesheet\\" href=\\"app.chunk.3.css\\">
+"
+`;
+
+exports[`asset_map chunks_css_include_missing 1`] = `
+"<script>alert(\\"Warning! No entrypoint named missing found in manifest#entrypoints.\\")</script>
+<link rel=\\"stylesheet\\" href=\\"app.chunk.1.css\\">
+<link rel=\\"stylesheet\\" href=\\"app.chunk.3.css\\">
+"
+`;
+
+exports[`asset_map chunks_css_include_missing 2`] = `
+"<script>alert(\\"Warning! No entrypoint named missing found in manifest#entrypoints.\\")</script>
+<link rel=\\"stylesheet\\" href=\\"app.chunk.1.css\\">
+<link rel=\\"stylesheet\\" href=\\"app.chunk.3.css\\">
+"
+`;
+
+exports[`asset_map chunks_js_include 1`] = `
+"<script src=\\"app.chunk.1.js\\"></script>
+<script src=\\"app.chunk.2.js\\"></script>
+<script src=\\"app.chunk.3.js\\"></script>
+"
+`;
+
+exports[`asset_map error_alert 1`] = `
+"<script>alert(\\"this failed. Here's why:...\\")</script>
+"
+`;
+
+exports[`asset_map error_comment 1`] = `
+"<!-- this failed. Here's why:... -->
+"
+`;
+
+exports[`asset_map error_error 1`] = `
+"<script>throw new Error(\\"this failed. Here's why:...\\")</script>
+"
+`;
+
+exports[`asset_map error_fail 1`] = `
+"<script src=\\"/pack/does/not/exist/a-missing-pack.js\\"></script>
+"
+`;
+
+exports[`asset_map integrity 1`] = `
+"sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC
+"
+`;
+
+exports[`asset_map integrity_missing 1`] = `
+"
+"
+`;
+
+exports[`asset_map path_missing 1`] = `
+"
+"
+`;
+
+exports[`asset_map path_present 1`] = `
+"foo.h4sh3d.js
+"
+`;
+
+exports[`asset_map script_integrity_by_default 1`] = `
+"<script src=\\"bar.md5hd.js\\" integrity=\\"sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC\\"></script>
+"
+`;
+
+exports[`asset_map script_present 1`] = `
+"<script src=\\"foo.h4sh3d.js\\"></script>
+"
+`;
+
+exports[`asset_map script_present_async 1`] = `
+"<script src=\\"foo.h4sh3d.js\\" async></script>
+"
+`;
+
+exports[`asset_map script_present_async_false 1`] = `
+"<script src=\\"foo.h4sh3d.js\\"></script>
+"
+`;
+
+exports[`asset_map script_present_missing 1`] = `
+"<!-- WARNING! Missing script pack named quux.js -->
+"
+`;
+
+exports[`asset_map stylesheet_missing 1`] = `
+"<script>alert(\\"WARNING! missing stylesheet pack named missing.css\\")</script>
+"
+`;
+
+exports[`asset_map stylesheet_present 1`] = `
+"<link rel=\\"stylesheet\\" href=\\"foo.h45h3d.css\\">
+"
+`;

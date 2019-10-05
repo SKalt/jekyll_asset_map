@@ -1,0 +1,76 @@
+$directions: input, output;
+
+:root {
+  --mono-font: San Francisco Mono, Monaco, "Consolas", "Lucida Console", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+  --sans-font: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
+}
+main {
+  max-width: 140ch;
+  padding: 2ch;
+  margin: auto;
+}
+
+* {
+  font-family: --sans-font;
+}
+
+pre, code {
+  font-family: var(--mono-font);
+  & * {
+    font-family: var(--mono-font);
+  }
+  // font-size: 85%;
+  padding: 2px;
+  margin: 2px;
+  border-radius: 3px;
+  background-color: rgba(27, 31, 35, 0.05);
+}
+
+pre code {
+  background-color: transparent;
+}
+
+
+@each $direction in $directions {
+  .test {
+    .test-#{$direction} {
+      overflow-x: scroll;
+      pre {padding-top: 1.2em;}
+      code {margin: 0; padding: 0;}
+      .text-#{$direction}--annotation {
+        position: relative;
+        color: darkgray;
+        font-size: smaller;
+        top: 1.5em;
+        left: .5em;
+        &::after {
+          content: "#{$direction}";
+        }
+      }
+    }
+  }
+}
+
+details {
+  margin-left: 1em;
+  & > :nth-child(n+1):not(summary) {
+    margin-left: 2em;
+  }
+  summary {
+    &.h {
+      font-size: 24px;
+      font-weight: 300;
+    }
+    &.h2 {
+      font-weight: 200;
+    }
+    * {
+      display: inline-block;
+    }
+
+    & > h2:first-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+  }
+}

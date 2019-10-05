@@ -1,4 +1,5 @@
 {% capture input %}
+```liquid
 {% raw %}{%{% endraw %}
   include {{ include.test | strip }}{% for kvp in include %}{%
     unless kvp[0] contains 'test'
@@ -12,9 +13,10 @@
        %}{%
     endunless %}{% endfor %}
 {% raw %}%}{% endraw %}
+```
 {% endcapture %}
 
-{% capture output %}
+{% capture raw_output %}
   {%
     include {{ include.test }}
       map=include.map
@@ -36,14 +38,18 @@
       media=include.media
   %}
 {% endcapture %}
-<div class="test"><div class="test-input"><span class="text-input--annotation"></span><pre><code>{{
-  input | strip
-}}</code></pre></div><div  class="test-output"><span class="text-output--annotation"></span><pre><code>{{
-  output
+
+{% capture output %}
+```html
+{{
+  raw_output
     | strip
     | replace: "><", ">
 <"
     | replace: ">
 </", "></"
-    | escape
-}}</code></pre></div></div>
+}}
+```
+{% endcapture %}
+
+<div class="test" id="test--{{ include.test_case_name }}"><div class="test-input"><span class="test-input--annotation"></span>{{ input | markdownify | strip }}</div><div class="test-output"><span class="test-output--annotation"></span>{{ output | markdownify | strip }}</div></div>

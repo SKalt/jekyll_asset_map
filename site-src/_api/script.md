@@ -1,7 +1,7 @@
 ---
 ---
 {%
-  include test/case.html
+  include test/case.md
     test="asset_map/script"
     test_case_name="script_present"
     name="foo.js"
@@ -9,7 +9,7 @@
 
 You can use script attributes such as `async`, `defer`, `type`, `nomodule`, `crossorigin`, or `referrerpolicy`.
 {%
-  include test/case.html
+  include test/case.md
     test="asset_map/script"
     test_case_name="script_present_async"
     name="foo.js"
@@ -18,7 +18,7 @@ You can use script attributes such as `async`, `defer`, `type`, `nomodule`, `cro
 
 Setting a boolean attribute to `false` will result in it being omitted (equivalent to false in html).
 {%
-  include test/case.html
+  include test/case.md
     test="asset_map/script"
     test_case_name="script_present_async_false"
     name="foo.js"
@@ -27,7 +27,7 @@ Setting a boolean attribute to `false` will result in it being omitted (equivale
 
 Missing scripts accept the standard `error` parameter (see [_](#))
 {%
-  include test/case.html
+  include test/case.md
     test="asset_map/script"
     test_case_name="script_present_missing"
     error="comment"
@@ -36,7 +36,7 @@ Missing scripts accept the standard `error` parameter (see [_](#))
 
 By default, if your asset map includes integrity information, that integrity is included in the generated script tag.
 {%
-  include test/case.html
+  include test/case.md
     test="asset_map/script"
     test_case_name="script_integrity_by_default"
     name="bar.js"

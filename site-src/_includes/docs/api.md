@@ -14,19 +14,19 @@ __{{ arg[0] }}__: _{% if args[1].required %}required{% else %}optional{% endif %
 {% endif %}
 {% endfor %}
 {% endcapture%}
-<details id="docs-{{ name }}" class="docs" >
-  <summary>
-    <h2><code>asset_map/{{ name }}</code></h2>
+<details id="docs-{{ name }}" class="docs" open >
+  <summary class="h">
+    <code>asset_map/{{ name }}</code>
   </summary>
   {{ site.data.docs[name].description | markdownify }}
-  <details open id="docs-{{ name }}-args" class="docs docs--args"><summary>Arguments</summary>
+  <details open id="docs-{{ name }}-args" class="docs docs--args"><summary class="h2">Arguments</summary>
     <section class="docs docs--args-arg">
       {{ args | markdownify }}
     </section>
   </details>
 
   <details open id="docs-{{ name }}-examples" class="docs doc--examples">
-    <summary>Examples</summary>
+    <summary class="h2">Examples</summary>
     <section class="examples">
       {{ include.content }}
     </section>

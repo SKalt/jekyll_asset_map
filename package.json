@@ -5,8 +5,13 @@
     "jest": "^24.9.0",
     "mini-css-extract-plugin": "^0.8.0",
     "rollup": "^1.20.3",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-output-manifest": "^1.0.0",
     "rollup-plugin-sass": "^1.2.2",
+    "rollup-plugin-scss": "^1.0.2",
+    "rollup-plugin-terser": "^5.1.2",
     "sass": "^1.22.12",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
@@ -16,9 +21,11 @@
     "webpack-manifest-plugin": "^2.0.4"
   },
   "scripts": {
-    "build:rollup": "rollup -c site-src/examples/rollup/rollup.config.js",
+    "build:rollup:simple": "rollup -c site-src/examples/rollup/simple.js",
+    "build:rollup:split": "rollup -c site-src/examples/rollup/split.js",
     "build:webpack:assets-manifest": "webpack --config ./site-src/examples/webpack/assets-manifest.config.js --mode production ",
     "build:webpack:manifest-plugin": "webpack --config ./site-src/examples/webpack/manifest-plugin.config.js --mode production ",
-    "test": "jest"
+    "build:jekyll": "docker-compose run jekyll jekyll build",
+    "test": "yarn build:rollup:simple && yarn build:jekyll && jest"
   }
 }
