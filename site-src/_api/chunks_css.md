@@ -7,7 +7,7 @@
     entrypoints="app1,app2"
 %}
 
-Missing...
+Missing chunks throw errors exactly like missing stylesheets do.
 {%
   include test/case.md
     test="asset_map/chunks_css"
