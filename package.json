@@ -26,6 +26,6 @@
     "build:webpack:assets-manifest": "webpack --config ./site-src/examples/webpack/assets-manifest.config.js --mode production ",
     "build:webpack:manifest-plugin": "webpack --config ./site-src/examples/webpack/manifest-plugin.config.js --mode production ",
     "build:jekyll": "docker-compose run jekyll jekyll build",
-    "test": "yarn build:rollup:simple && yarn build:jekyll && jest"
+    "test": "jest"
   }
 }
