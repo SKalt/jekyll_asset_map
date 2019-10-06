@@ -1,45 +1,51 @@
-const {resolve} = require("path")
-const ManifestPlugin = require("webpack-manifest-plugin")
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { resolve } = require("path");
+const ManifestPlugin = require("webpack-manifest-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  context: resolve(__dirname, "../../assets"),
+  context: resolve(__dirname, "../../assets/src"),
   entry: {
-    docs: "./docs.js"
+    docs: "./docs"
   },
   output: {
-    filename: "[name]-[contenthash].js"
+    path: resolve(
+      __dirname,
+      "../../assets/dist/webpack/mainfest-plugin/simple"
+    ),
+    filename: "[name]-[contenthash].js",
+    publicPath: "/assets/webpack/manifest-plugin/simple"
   },
   module: {
     rules: [
       {
         test: /\.s[ac]ss$/i,
         use: [
-          // Creates `style` nodes from JS strings
-          MiniCssExtractPlugin.loader,
-          // Translates CSS into CommonJS
-          'css-loader',
-          // Compiles Sass to CSS
-          'sass-loader',
-        ],
-      },
-    ],
+          MiniCssExtractPlugin.loader, // Creates `style` nodes from JS strings
+          "css-loader", // Translates CSS into CommonJS
+          "sass-loader" // Compiles Sass to CSS
+        ]
+      }
+    ]
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
+      chunks: "all"
     }
   },
   plugins: [
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional
-      filename: '[name]-[contenthash].css',
-      chunkFilename: '[id]-[contenthash].css',
-      ignoreOrder: false, // Enable to remove warnings about conflicting order
+      filename: "[name]-[contenthash].css",
+      chunkFilename: "[id]-[contenthash].css",
+      ignoreOrder: false // Enable to remove warnings about conflicting order
     }),
     new ManifestPlugin({
-      fileName: '../site-src/_data/webpack_manifest_plugin.json'
+      publicPath: "/assets/dist/",
+      fileName: resolve(
+        __dirname,
+        "../../_data/webpack_manifest_plugin_simple.json"
+      )
     })
   ]
-}
+};

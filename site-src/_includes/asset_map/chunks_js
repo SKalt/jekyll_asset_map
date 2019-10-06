@@ -9,63 +9,55 @@
       {% assign entrypoint_key = include.entrypoint_key | default: "entrypoints" %}
       {% assign entrypoint_map = asset_map[entrypoint_key] %}
       {% if entrypoint_map %}
-        {% assign _entrypoints = "" | split: "" %}
-        {% for entrypoint in entrypoints %}
-          {% assign _entrypoints = _entrypoints | push: entrypoint_map[entrypoint] %}
-        {% endfor %}
-        {% assign chunks = _entrypoints | map: asset_key | uniq %}
+        {% assign chunks = "" | split: "" %}
+        {% for entrypoint in entrypoints %}{%
+          assign _entrypoint = entrypoint_map[entrypoint] %}{%
+          assign _entrypoint = _entrypoint[asset_key] | default: _entrypoint %}{%
+          for chunk in _entrypoint %}{%
+            assign src = chunk.path
+              | default: chunk.src
+              | default: chunk.href
+              | default: chunk.asset
+              | default: chunk %}{%
+            if src %}{%
+              unless chunks contains src %}{%
+                assign chunks = chunks | push: src %}{%
+                assign bools = "async,defer,nomodule" | split: "," %}{%
+                assign echoed = "type,crossorigin,referrerpolicy" | split: ","
+                %}<script src="{{ src }}"{%
+                if chunk.integrity and chunk.integrity != ""
+                  %} integrity="{{ chunk.integrity }}"{%
+                endif %}{%
+                for attr in echoed %}{%
+                  if include[attr] %} {{ attr }}="{{ include[attr] }}"{% endif %}{%
+                endfor %}{%
+                for attr in bools %}{%
+                  if include[attr] %} {{ attr }}{% endif %}{%
+                endfor %}></script>{%
+              endunless %}{%
+            else %}{%
+              capture message
+                %}WARNING! no useable source for chunk {{ chunk }}{%
+              endcapture %}{%
+              include asset_map/error message=message error=include.error %}{%
+            endif %}{%
+          endfor %}{%
+        endfor %}
       {% else %}
-        {% include asset_map/error
+        {%
+          include asset_map/error
             message="Error! No entrypoint map found"
             error=include.error
         %}
       {% endif %}
-      {% for chunk in chunks %}{%
-        assign src = chunk.path
-          | default: chunk.src
-          | default: chunk.href
-          | default: chunk.asset
-          | default: chunk
-        %}{%
-          if src
-          %}{%
-            assign bools = "async,defer,nomodule" | split: ","
-            %}{%
-            assign echoed = "type,crossorigin,referrerpolicy" | split: ","
-            %}<script src="{{ src }}"{%
-            if chunk.integrity and chunk.integrity != ""
-          %} integrity="{{ chunk.integrity }}"{%
-            endif
-          %}{%
-            for attr in echoed %}{%
-              if include[attr] %} {{ attr }}="{{ include[attr] }}"{% endif %}{%
-            endfor
-            %}{%
-            for attr in bools
-            %}{%
-              if include[attr] %} {{ attr }}{% endif %}{%
-            endfor
-          %}></script>{%
-            else
-          %}{%
-              capture message
-                %}WARNING! no useable source for chunk {{ chunk }}{%
-              endcapture
-            %}{%
-              include asset_map/error message=message error=include.error
-              %}{%
-          endif
-        %}{%
-        endfor
-      %}
     {% else %}
       {% capture message %}WARNING! no asset map named {{ asset_map_name }}{% endcapture %}
       {% include asset_map/error message=message error=include.error %}
     {% endif %}
   {% else %}
-   {% include asset_map/error
+    {% include asset_map/error
       message="WARNING: no entrypoints supplied"
       error=include.error
     %}
   {% endif %}
-{% endcapture %}{{ result | strip }}
+{% endcapture %}{{ result | strip }}{{ _entrypoints }}

@@ -5,9 +5,9 @@ path:
       type: string
       description: The name of the asset map hash table within `site.data`.
       defaults:
-        - 'include.map'
-        - 'page.asset_map.name'
-        - 'site.asset_map.name'
+        - "include.map"
+        - "page.asset_map.name"
+        - "site.asset_map.name"
         - '"manifest"'
     name: &arg_name
       required: true
@@ -25,8 +25,8 @@ error:
       type: one of "alert", "error", "comment", or "fail"
       description: What kind of error to raise.
       defaults:
-        - 'include.error'
-        - 'site.asset_map.error'
+        - "include.error"
+        - "site.asset_map.error"
         - '"alert"'
 script:
   arguments:
@@ -35,10 +35,10 @@ script:
     error: *arg_error
     "...other script tag attrs": &arg_script_tag_attrs
       required: false
-      type: 'bool or string'
-      description: 'Other script tag attributes: [async](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-async), [defer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-defer), [nomodule](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-nomodule), [type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-type), [crossorigin](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-crossorigin), [referrerpolicy](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-referrerpolicy).  '
+      type: "bool or string"
+      description: "Other script tag attributes: [async](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-async), [defer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-defer), [nomodule](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-nomodule), [type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-type), [crossorigin](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-crossorigin), [referrerpolicy](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-referrerpolicy).  "
       defaults:
-        - 'false/blank'
+        - "false/blank"
 stylesheet:
   arguments:
     map: *arg_map
@@ -46,10 +46,10 @@ stylesheet:
     error: *arg_error
     "...other stylesheet tag attrs": &arg_stylesheet_tag_attrs
       required: false
-      type: 'bool or string'
+      type: "bool or string"
       description: 'Other `<link rel="stylesheet">` attributes: [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#attr-crossorigin), [`importance`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#attr-importance), [media](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#attr-media), [type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#attr-type).'
       defaults:
-        - 'false/blank'
+        - "false/blank"
 integrity:
   arguments:
     map: *arg_map
@@ -68,6 +68,7 @@ chunks_js:
       defaults:
         - '","'
     asset_key:
+      description: the sub-array of the entrypoint containing the js chunk descriptors.
       required: false
       type: string
       defaults:
@@ -86,6 +87,7 @@ chunks_css:
     entrypoints: *arg_entrypoints
     sep: *arg_sep
     asset_key:
+      description: the sub-array of the entrypoint containing the css chunk descriptors.
       required: false
       type: string
       defaults:
