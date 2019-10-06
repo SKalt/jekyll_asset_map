@@ -1,14 +1,14 @@
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
-import sass from "rollup-plugin-sass";
+import sass from "rollup-plugin-scss";
 import manifest from "rollup-plugin-output-manifest";
-import { terser } from "rollup-plugin-terser";
 import clear from "rollup-plugin-clear";
 import { writeFileSync, mkdirSync } from "fs";
 import sha256 from "hash.js/lib/hash/sha/256";
+import { terser } from "rollup-plugin-terser";
 
 const manifestSeed = {};
-const outputDir = "site-src/assets/dist/rollup/simple";
+const outputDir = "site-src/assets/dist/rollup/split";
 export default {
   input: {
     docs: "site-src/assets/src/docs"
@@ -16,7 +16,17 @@ export default {
   output: {
     entryFileNames: "[name]-[hash].js",
     format: "esm",
-    dir: outputDir
+    dir: outputDir,
+    manualChunks(id) {
+      console.log({ id });
+      // from https://philipwalton.com/articles/using-native-javascript-modules-in-production-today/
+      if (id.includes("node_modules")) {
+        // Return the directory name following the last `node_modules` Usually
+        // this is the package, but it could also be the scope.
+        const dirs = id.split(path.sep);
+        return dirs[dirs.lastIndexOf("node_modules") + 1];
+      }
+    }
   },
   plugins: [
     clear({
@@ -34,7 +44,7 @@ export default {
         mkdirSync(outputDir, { recursive: true });
         writeFileSync(`${outputDir}/${file}`, styles);
         manifestSeed["styles.css"] = {
-          path: `/assets/dist/rollup/simple/${file}`,
+          path: `/assets/dist/rollup/split/${file}`,
           integrity: `sha256-${hash}`
         };
       },
@@ -47,16 +57,23 @@ export default {
     }),
     manifest({
       outputPath: "site-src/_data",
-      fileName: "rollup_simple.json",
-      publicPath: "/assets/dist/rollup/simple/",
+      fileName: "rollup_split.json",
+      publicPath: "/assets/dist/rollup/split/",
       generate: keyValueDecorator => chunks =>
-        chunks.reduce(
-          (manifest, { name, fileName }) => ({
+        chunks.reduce((manifest, entry) => {
+          const { name, fileName, code } = entry;
+          const hash = sha256()
+            .update(code)
+            .digest("hex");
+          const [[_name, path]] = Object.entries(
+            keyValueDecorator(name, fileName)
+          );
+          console.log({ path });
+          return {
             ...manifest,
-            ...keyValueDecorator(name, fileName)
-          }),
-          manifestSeed
-        )
+            ...{ [_name]: { path, integrity: `sha256-${hash}` } }
+          };
+        }, manifestSeed)
     }),
     terser()
   ]
