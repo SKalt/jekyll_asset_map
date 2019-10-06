@@ -8,12 +8,15 @@ dependency_order: # I wanted this to respect _config.yml#collections#order, but 
   - Chunks_js
   - Chunks_css
 ---
+
 {% include asset_map/script map="rollup_simple" name="docs.js" %}
 
 # [`jekyll_asset_map`](#)
+
 ---
 
 ## When to use this
+
 You should use this if all of the below are true:
 
 <input type="checkbox"> you've got an existing Jekyll site written using liquid templates
@@ -25,6 +28,7 @@ You should use this if all of the below are true:
 If you're going to process your HTML with some tool that runs in Node.js (webpack, rollup, parcel, gulp, or anything else), that tool likely has its own asset map implementation.
 
 <a id="installation"></a>
+
 ## [installation](#installation)
 
 ```sh
@@ -38,11 +42,14 @@ curl -O https://raw.githubusercontent.com/ | gunzip
 ```
 
 <a id="API"></a>
+
 ## [API](#API)
+
 ---
+
 {% for title in page.dependency_order %}
-  {% assign content = site.api | where: "title", title %}
-  {% include docs/api.md
+{% assign content = site.api | where: "title", title %}
+{% include docs/api.md
     name=title
     content=content
   %}
