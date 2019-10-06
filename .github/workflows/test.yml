@@ -2,6 +2,9 @@ on:
   - push
 jobs:
   test:
+    strategy:
+      matrix:
+        JEKYLL_VERSION: ["3", "4"]
     name: testing
     runs-on: ubuntu-latest
     steps:
@@ -12,7 +15,8 @@ jobs:
         docker run \
           -v ${{ github.workspace }}:/srv/jekyll \
           -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-          jekyll/builder:latest \
+          -e JEKYLL_ENV=development \
+          jekyll/minimal:${{ matrix.JEKYLL_VERSION }} \
           /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
     - name: yarn install
       run:  yarn install
