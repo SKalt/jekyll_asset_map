@@ -1,20 +1,22 @@
 const { resolve } = require("path");
-const AssetsManifestPlugin = require("webpack-assets-manifest");
+const ManifestPlugin = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const outputDir = resolve(
-  __dirname,
-  "../../assets/dist/webpack/asset-mainfest/simple"
-);
 module.exports = {
-  context: resolve(__dirname, "../../assets/src"), // the root of the repo
+  context: resolve(__dirname, "../../assets/src"),
   entry: {
     docs: "./docs"
   },
   output: {
-    path: outputDir,
+    // // for creation of SRI hashes
+    // // https://webpack.js.org/configuration/output/#outputhashfunction
+    // hashFunction: "sha256",
+    path: resolve(
+      __dirname,
+      "../../assets/dist/webpack/mainfest-plugin/simple"
+    ),
     filename: "[name]-[contenthash].js",
-    publicPath: "/assets/webpack/asset-manifets/simple"
+    publicPath: "/assets/webpack/manifest-plugin/simple"
   },
   module: {
     rules: [
@@ -29,7 +31,6 @@ module.exports = {
     ]
   },
   optimization: {
-    // split as much code as reasonably possible
     splitChunks: {
       chunks: "all"
     }
@@ -42,11 +43,17 @@ module.exports = {
       chunkFilename: "[id]-[contenthash].css",
       ignoreOrder: false // Enable to remove warnings about conflicting order
     }),
-    new AssetsManifestPlugin({
-      // where to save the manifest
-      output: resolve(__dirname, "../../_data/webpack_assets_manifest.json"),
-      integrity: true,
-      entrypoints: true
+    new ManifestPlugin({
+      publicPath: "/assets/dist/",
+      fileName: resolve(
+        __dirname,
+        "../../_data/webpack_manifest_plugin_split.json"
+      ),
+      generate: (seed, files, entrypoints) => {
+        return files.reduce((manifest, { name, path }) => {
+          return { ...manifest, [name]: path };
+        }, Object.assign(seed, entrypoints));
+      }
     })
   ]
 };

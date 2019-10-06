@@ -9,18 +9,60 @@
       {% assign entrypoint_key = include.entrypoint_key | default: "entrypoints" %}
       {% assign entrypoint_map = asset_map[entrypoint_key] %}
       {% if entrypoint_map %}
-        {% assign _entrypoints = "" | split: "" %}
-        {%
-          for entrypoint in entrypoints
-          %}{%
-          assign _entrypoint = entrypoint_map[entrypoint]
-          %}{%
-          if _entrypoint
-          %}{%
-            assign _entrypoints = _entrypoints | push: _entrypoint
-          %}{%
-          else
-          %}{%
+        {% assign chunks = "" | split: "" %}
+        {% for entrypoint in entrypoints
+           %}{%
+           assign _entrypoint = entrypoint_map[entrypoint]
+            %}{%
+            if _entrypoint
+              %}{%
+              assign _entrypoint = _entrypoint[asset_key] | default: _entrypoint
+              %}{%
+              for chunk in _entrypoint
+                %}{%
+                assign href = chunk.path
+                  | default: chunk.href
+                  | default: chunk.src
+                  | default: chunk.asset
+                  | default: chunk
+                %}{%
+                  if href
+                    %}{%
+                    unless chunks contains href
+                      %}{%
+                      assign chunks = chunks | push: href
+                      %}{%
+                      assign echoed = "crossorigin,importance,media" | split: ","
+                      %}<link rel="stylesheet" href="{{ href }}"{%
+                      for echo in echoed
+                        %}{%
+                        if include[echo]
+                          %} {{ echo }}="{{ include[echo] }}"{%
+                        endif
+                        %}{%
+                      endfor
+                      %}{%
+                      if chunk.integrity
+                        %} integrity="{{ chunk.integrity }}"{%
+                      endif
+                      %}{%
+                      if include.type
+                        %} type="{{ include.type }}"{%
+                      endif
+                      %}>{%
+                    endunless
+                    %}{%
+                  else
+                  %}{% capture message %}Warning! Nil chunk found in {{ asset_map_name }}#{{ entrypoint_key }}.{% endcapture %}{%
+                    include asset_map/error
+                      message=message
+                      error=include.error
+                    %}{%
+                  endif
+                %}{%
+              endfor %}{%
+            else
+            %}{%
               capture message
             %}Warning! No entrypoint named {{ entrypoint }} found in {{ asset_map_name }}#{{ entrypoint_key }}.{%
               endcapture
@@ -34,66 +76,24 @@
         endfor
         %}{%
         assign chunks = _entrypoints | map: asset_key | uniq
-      %}{%
-        else
-      %}{%
+      %}{% else %}{%
         include asset_map/error
           message="Error! No entrypoint map found"
           error=include.error
+      %}{% endif %}{%
+    else %}{%
+      capture message
+        %}WARNING! No asset map named {{ asset_map_name }}.{%
+      endcapture
       %}{%
-        endif
-      %}{%
-        for chunk in chunks
-      %}{%
-        assign href = chunk.path
-          | default: chunk.href
-          | default: chunk.src
-          | default: chunk.asset
-          | default: chunk
-        %}{%
-          if href
-          %}{%
-              assign echoed = "crossorigin,importance,media" | split: ","
-            %}<link rel="stylesheet" href="{{ href }}"{%
-            for echo in echoed
-            %}{%
-              if include[echo]
-                %} {{ echo }}="{{ include[echo] }}"{%
-              endif
-              %}{%
-            endfor
-          %}{%
-            if chunk.integrity
-          %} integrity="{{ chunk.integrity }}"{%
-            endif
-          %}{%
-            if include.type
-          %} type="{{ include.type }}"{%
-            endif
-          %}>{%
-            else
-          %}{% capture message %}Warning! Nil chunk found in {{ asset_map_name }}#{{ entrypoint_key }}.{% endcapture %}{%
-            include asset_map/error
-              message=message
-              error=include.error
-            %}{%
-          endif
-        %}{%
-        endfor
-      %}
-    {% else %}
-      {% capture message %}WARNING! No asset map named {{ asset_map_name }}.{% endcapture %}
-      {%
-        include asset_map/error
-          message=message
-          error=include.error
-        %}
-    {% endif %}
-  {% else %}
-    {%
       include asset_map/error
-        message="WARNING: no entrypoints supplied"
+        message=message
         error=include.error
-    %}
-  {% endif %}
+      %}{%
+    endif %}
+  {% else %}{%
+    include asset_map/error
+      message="WARNING: no entrypoints supplied"
+      error=include.error
+  %}{% endif %}
 {% endcapture %}{{ result | strip }}

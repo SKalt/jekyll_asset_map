@@ -1,0 +1,33 @@
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+  release:
+    types:
+      - published
+      - prereleased
+jobs:
+  test:
+    strategy:
+      matrix:
+        JEKYLL_VERSION: ["3", "4"]
+    name: testing
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the site in the jekyll/builder container
+      run: |
+        docker run \
+          -v ${{ github.workspace }}:/srv/jekyll \
+          -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+          -e JEKYLL_ENV=development \
+          jekyll/jekyll:${{ matrix.JEKYLL_VERSION }} \
+          /bin/bash -c "chmod 777 /srv/jekyll && yarn && yarn build && yarn test"
+    - name: upload release artefacts
+      # if:   github.event_name == 'release'
+      uses: actions/upload-artifact@v1
+      with:
+        name: asset_map
+        path: site-src/_includes/asset_map
