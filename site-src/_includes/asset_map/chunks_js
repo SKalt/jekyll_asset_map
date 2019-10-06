@@ -20,21 +20,23 @@
               | default: chunk.asset
               | default: chunk %}{%
             if src %}{%
-              unless chunks contains src %}{%
-                assign chunks = chunks | push: src %}{%
-                assign bools = "async,defer,nomodule" | split: "," %}{%
-                assign echoed = "type,crossorigin,referrerpolicy" | split: ","
-                %}<script src="{{ src }}"{%
-                if chunk.integrity and chunk.integrity != ""
-                  %} integrity="{{ chunk.integrity }}"{%
-                endif %}{%
-                for attr in echoed %}{%
-                  if include[attr] %} {{ attr }}="{{ include[attr] }}"{% endif %}{%
-                endfor %}{%
-                for attr in bools %}{%
-                  if include[attr] %} {{ attr }}{% endif %}{%
-                endfor %}></script>{%
-              endunless %}{%
+              if src contains ".js" %}{%
+                unless chunks contains src %}{%
+                  assign chunks = chunks | push: src %}{%
+                  assign bools = "async,defer,nomodule" | split: "," %}{%
+                  assign echoed = "type,crossorigin,referrerpolicy" | split: ","
+                  %}<script src="{{ src }}"{%
+                  if chunk.integrity and chunk.integrity != ""
+                    %} integrity="{{ chunk.integrity }}"{%
+                  endif %}{%
+                  for attr in echoed %}{%
+                    if include[attr] %} {{ attr }}="{{ include[attr] }}"{% endif %}{%
+                  endfor %}{%
+                  for attr in bools %}{%
+                    if include[attr] %} {{ attr }}{% endif %}{%
+                  endfor %}></script>{%
+                endunless %}{%
+              endif %}{%
             else %}{%
               capture message
                 %}WARNING! no useable source for chunk {{ chunk }}{%

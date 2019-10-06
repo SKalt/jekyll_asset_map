@@ -26,32 +26,32 @@
                   | default: chunk.asset
                   | default: chunk
                 %}{%
-                  if href
-                    %}{%
-                    unless chunks contains href
-                      %}{%
-                      assign chunks = chunks | push: href
-                      %}{%
-                      assign echoed = "crossorigin,importance,media" | split: ","
-                      %}<link rel="stylesheet" href="{{ href }}"{%
-                      for echo in echoed
+                  if href %}{%
+                    if href contains ".css" %}{%
+                      unless chunks contains href
                         %}{%
-                        if include[echo]
-                          %} {{ echo }}="{{ include[echo] }}"{%
+                        assign chunks = chunks | push: href
+                        %}{%
+                        assign echoed = "crossorigin,importance,media" | split: ","
+                        %}<link rel="stylesheet" href="{{ href }}"{%
+                        for echo in echoed
+                          %}{%
+                          if include[echo]
+                            %} {{ echo }}="{{ include[echo] }}"{%
+                          endif
+                          %}{%
+                        endfor
+                        %}{%
+                        if chunk.integrity
+                          %} integrity="{{ chunk.integrity }}"{%
                         endif
                         %}{%
-                      endfor
-                      %}{%
-                      if chunk.integrity
-                        %} integrity="{{ chunk.integrity }}"{%
-                      endif
-                      %}{%
-                      if include.type
-                        %} type="{{ include.type }}"{%
-                      endif
-                      %}>{%
-                    endunless
-                    %}{%
+                        if include.type
+                          %} type="{{ include.type }}"{%
+                        endif
+                        %}>{%
+                      endunless %}{%
+                    endif %}{%
                   else
                   %}{% capture message %}Warning! Nil chunk found in {{ asset_map_name }}#{{ entrypoint_key }}.{% endcapture %}{%
                     include asset_map/error
