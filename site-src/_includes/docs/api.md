@@ -14,7 +14,7 @@ __{{ arg[0] }}__: _{% if args[1].required %}required{% else %}optional{% endif %
 {% endif %}
 {% endfor %}
 {% endcapture%}
-<details id="docs-{{ name }}" class="docs" open >
+<details id="docs-{{ name }}" class="docs">
   <summary class="h">
     <code>asset_map/{{ name }}</code>
   </summary>
