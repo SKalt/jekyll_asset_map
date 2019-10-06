@@ -1,7 +1,9 @@
 # Jekyll asset map \_include
+
 > rails-webpacker's asset inclusion tags as jekyll \_includes
 
 ## When to use this
+
 You should use this if all of the below are true:
 
 [ ] you've got an existing Jekyll site written using liquid templates
@@ -14,16 +16,8 @@ If you're going to process your HTML with some tool that runs in Node.js (webpac
 
 ## Quickstart
 
-```sh
-#!/usr/bin/env bash
-# TODO
-# install.sh
-ASSET_MAP_VERSION="${ASSET_MAP_VERSION:-1.0.0}";
-# ^ must always specify a full semver number
-TARGET_LOCATION="${1:-./}"
-curl -O https://raw.githubusercontent.com/ | gunzip
-```
+Copy the [`_includes/asset_map` directory](./site-src/_includes/asset_map) into your own `_includes` directory.
 
-# [Documentation](//skalt.github.io/jekyll_asset_map/)
-<!-- TODO: move to actual site link? -->
-# [Contributing and development](./CONTRIBUTING.md)
+# Documentation
+
+Either see the docs alltogether on [gh-pages](//skalt.github.io/jekyll_asset_map/) or see [`_data/docs.yml`](./site-src/_data/docs.yml) and the [`_api` example collection](./site-src/_api)
