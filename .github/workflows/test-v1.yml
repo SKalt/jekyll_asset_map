@@ -1,13 +1,11 @@
+name: testing master
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
   release:
     types:
       - published
       - prereleased
+    tags:
+      - "v1*"
 jobs:
   test:
     strategy:

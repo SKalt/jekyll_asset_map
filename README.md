@@ -2,6 +2,12 @@
 
 > rails-webpacker's asset inclusion tags as jekyll \_includes
 
+<!-- badges  -->
+
+[![Actions Status](https://github.com/skalt/jekyll_asset_map/workflows/testing/badge.svg)](https://github.com/skalt/jekyll_asset_map/actions)
+
+<!-- /badges -->
+
 ## When to use this
 
 You should use this if all of the below are true:

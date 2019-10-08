@@ -1,13 +1,9 @@
+name: testing master
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-  release:
-    types:
-      - published
-      - prereleased
+  push:
+    branch:
+      - master
+      - gh-pages
 jobs:
   test:
     strategy:
