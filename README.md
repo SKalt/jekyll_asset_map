@@ -4,8 +4,6 @@
 
 <!-- badges  -->
 
-[![Actions Status](https://github.com/skalt/jekyll_asset_map/workflows/testing/badge.svg)](https://github.com/skalt/jekyll_asset_map/actions)
-
 <!-- /badges -->
 
 ## When to use this

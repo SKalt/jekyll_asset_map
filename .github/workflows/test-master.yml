@@ -18,7 +18,7 @@ jobs:
           docker run \
             -v ${{ github.workspace }}:/srv/jekyll \
             -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-            -e JEKYLL_ENV=development \
+            -e JEKYLL_ENV=production \
             jekyll/jekyll:${{ matrix.JEKYLL_VERSION }} \
             /bin/bash -c "chmod 777 /srv/jekyll && yarn && yarn build && yarn test"
       - name: upload release artefacts
