@@ -17,7 +17,7 @@
 {% endfor %}
 {% endcapture%}
 
-<details id="docs-{{ name }}" class="docs">
+<details open id="docs-{{ name }}" class="docs">
   <summary class="h">
     <code>asset_map/{{ name }}</code>
   </summary>
@@ -28,7 +28,7 @@
     </section>
   </details>
 
-  <details open id="docs-{{ name }}-examples" class="docs doc--examples">
+  <details id="docs-{{ name }}-examples" class="docs doc--examples">
     <summary class="h2">Examples</summary>
     <section class="examples">
       {{ include.content }}
