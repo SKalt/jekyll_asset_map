@@ -1,0 +1,17 @@
+{
+  "docs": [
+    "docs-502788ebadd499351ae8.css",
+    "docs-f0c926baadb21738c71a.js"
+  ],
+  "app1": [
+    "app1-2d199b44af5e342a0058.js"
+  ],
+  "app2": [
+    "app2-d96528906cfe2e253e95.js"
+  ],
+  "app1.js": "/assets/dist/app1-2d199b44af5e342a0058.js",
+  "app2.js": "/assets/dist/app2-d96528906cfe2e253e95.js",
+  "docs.css": "/assets/dist/docs-502788ebadd499351ae8.css",
+  "docs.js": "/assets/dist/docs-f0c926baadb21738c71a.js",
+  "3-8c6b28cb74c0b2f91d7c.js": "/assets/dist/3-8c6b28cb74c0b2f91d7c.js"
+}

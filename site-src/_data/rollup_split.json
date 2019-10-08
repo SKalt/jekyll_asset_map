@@ -1,0 +1,18 @@
+{
+  "styles.css": {
+    "path": "/assets/dist/rollup/split/styles-f0edf29f.css",
+    "integrity": "sha256-8O3yn1WkJztNhXp8kGu1yTq4Dbg4NECzLo0qFhafvww="
+  },
+  "app1.js": {
+    "path": "/assets/dist/rollup/split/app1-c1815ec5.js",
+    "integrity": "sha256-W+TB1Y4byxtqbFW3Qh9ou6gALK6WGeBwK1QXaEC8i8A="
+  },
+  "app2.js": {
+    "path": "/assets/dist/rollup/split/app2-db9bd06f.js",
+    "integrity": "sha256-rofWnvy0bPWYasdoKOnQ2TeMU6pYuAU+IK+oN4zAJME="
+  },
+  "docs.js": {
+    "path": "/assets/dist/rollup/split/docs-6d7d45af.js",
+    "integrity": "sha256-AbpHGcgLb+kRsJGnwFEktk7uzpZOCcBY74+YBdrKVGs="
+  }
+}
