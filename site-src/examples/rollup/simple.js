@@ -5,8 +5,8 @@ import manifest from "rollup-plugin-output-manifest";
 import { terser } from "rollup-plugin-terser";
 import clear from "rollup-plugin-clear";
 import { writeFileSync, mkdirSync } from "fs";
-import sha256 from "hash.js/lib/hash/sha/256";
-
+import crypto from "crypto";
+const sha256 = str => crypto.createHash("sha256").update(str);
 const manifestSeed = {};
 const outputDir = "site-src/assets/dist/rollup/simple";
 export default {
@@ -29,15 +29,14 @@ export default {
     commonjs(),
     sass({
       output: styles => {
-        const hash = sha256()
-          .update(styles)
-          .digest("hex");
-        const file = `styles-${hash.substring(0, 8)}.css`;
+        const hashB64 = sha256(styles).digest("base64");
+        const hashHex = sha256(styles).digest("hex");
+        const file = `styles-${hashHex.substring(0, 8)}.css`;
         mkdirSync(outputDir, { recursive: true });
         writeFileSync(`${outputDir}/${file}`, styles);
         manifestSeed["styles.css"] = {
           path: `/assets/dist/rollup/simple/${file}`,
-          integrity: `sha256-${hash}`
+          integrity: `sha256-${hashB64}`
         };
       },
       // `output: true` should output a bunch of split `.css` files in dist, but

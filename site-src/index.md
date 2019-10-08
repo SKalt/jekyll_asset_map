@@ -9,8 +9,6 @@ dependency_order: # I wanted this to respect _config.yml#collections#order, but 
   - Chunks_css
 ---
 
-{% include asset_map/script map="rollup_simple" name="docs.js" %}
-
 # [`jekyll_asset_map`](#)
 
 ---
@@ -25,21 +23,13 @@ You should use this if all of the below are true:
 
 <input type="checkbox"> but you don't want to completely rewrite your build process.
 
-If you're going to process your HTML with some tool that runs in Node.js (webpack, rollup, parcel, gulp, or anything else), that tool likely has its own asset map implementation.
+If you're going to process your HTML with some tool that runs in Node.js ([webpack](//https://webpack.js.org), [rollup](https://rollupjs.org/), [parcel](https://parceljs.org/), [gulp](https://gulpjs.com/), or anything else), that tool likely has its own asset map implementation.
 
 <a id="installation"></a>
 
 ## [installation](#installation)
 
-```sh
-#!/usr/bin/env bash
-# TODO
-# install.sh
-ASSET_MAP_VERSION="${ASSET_MAP_VERSION:-1.0.0}";
-# ^ must always specify a full semver number
-TARGET_LOCATION="${1:-./}"
-curl -O https://raw.githubusercontent.com/ | gunzip
-```
+Copy the [`_includes/asset_map` directory](https://github.com/SKalt/jekyll_asset_map/tree/master/site-src/_includes) into your own `_includes` directory.
 
 <a id="API"></a>
 

@@ -18,7 +18,7 @@ services:
       - "35729:35729"
     environment:
       JEKYLL_ENV: production
-    command: ["jekyll", "serve", "--livereload", "--incremental"]
+    command: ["jekyll", "serve", "--livereload"]
   # webpack:
   #   image: node:12.9.0-alpine
   #   volumes:
