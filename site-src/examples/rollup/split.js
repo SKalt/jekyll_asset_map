@@ -1,6 +1,6 @@
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
-import sass from "rollup-plugin-scss";
+import sass from "rollup-plugin-sass";
 import manifest from "rollup-plugin-output-manifest";
 import clear from "rollup-plugin-clear";
 import { writeFileSync, mkdirSync } from "fs";
@@ -51,7 +51,8 @@ export default {
         };
       },
       // `output: true` should output a bunch of split `.css` files in dist, but
-      // it doesn't. In any case, it's a great excuse to
+      // it doesn't. In any case, it's a great excuse to roll our own integrity
+      // hash, and use that in the filename.
       options: {
         // for https://github.com/sass/dart-sass#javascript-api
         outputStyle: "compressed"
