@@ -32,7 +32,7 @@ export default {
   },
   plugins: [
     clear({
-      target: [outputDir],
+      targets: [outputDir],
       watch: true
     }),
     resolve(),

@@ -1,6 +1,7 @@
 const { resolve } = require("path");
 const AssetsManifestPlugin = require("webpack-assets-manifest");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const siteSrcDir = resolve(__dirname, "../../");
 
@@ -35,6 +36,7 @@ module.exports = {
     }
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional
