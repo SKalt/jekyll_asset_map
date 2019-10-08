@@ -2,17 +2,16 @@ const { resolve } = require("path");
 const AssetsManifestPlugin = require("webpack-assets-manifest");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const outputDir = resolve(
-  __dirname,
-  "../../assets/dist/webpack/asset-mainfest/simple"
-);
+const siteSrcDir = resolve(__dirname, "../../");
 module.exports = {
-  context: resolve(__dirname, "../../assets/src"), // the root of the repo
+  context: resolve(siteSrcDir, "assets/src"), // the root of the repo
   entry: {
-    docs: "./docs"
+    docs: "./docs",
+    app1: "./example/app1.js",
+    app2: "./example/app2.js"
   },
   output: {
-    path: outputDir,
+    path: resolve(siteSrcDir, "assets/dist/webpack/assets-manifest/integrity"),
     filename: "[name]-[contenthash].js",
     publicPath: "/assets/webpack/asset-manifets/simple"
   },
@@ -44,9 +43,13 @@ module.exports = {
     }),
     new AssetsManifestPlugin({
       // where to save the manifest
-      output: resolve(__dirname, "../../_data/webpack_assets_manifest.json"),
+      output: resolve(
+        siteSrcDir,
+        "_data/webpack_assets_manifest_integrity.json"
+      ),
       integrity: true,
       entrypoints: true,
+      // transform each chunk from "src" to { src, integrity }.
       transform(assets, manifest) {
         const { entrypointsKey, integrityPropertyName } = manifest.options;
         const entrypoints = { ...assets[entrypointsKey] };
@@ -72,37 +75,6 @@ module.exports = {
           .reduce(toObject, obj());
         assets[entrypointsKey] = augmented;
       }
-      // customize(entry, original, manifest, asset) {
-      //   console.log({ entry, integrity: asset.integrity });
-      //   return entry;
-      // },
-      // done(manifest) {
-      //   const entrypointsKey = manifest.options.entrypointsKey;
-      //   const { assets } = manifest;
-      //   const entrypoints = { ...assets[entrypointsKey] };
-      //   // console.log(assets[entrypointsKey], { entrypointsKey, assets });
-      //   const toObject = (a, [k, v]) => ({ ...a, [k]: v });
-      //   const rev = Object.entries(assets)
-      //     .filter(([k]) => k !== entrypointsKey)
-      //     .map(([k, v]) => [v.src, k])
-      //     .reduce(toObject, {});
-      //   const augmented = Object.entries(entrypoints)
-      //     .map(([name, entries]) => [
-      //       name,
-      //       Object.entries(entries)
-      //         .map(([ext, paths]) => [
-      //           ext,
-      //           paths.map(src => ({
-      //             integrity: (assets[rev[src]] || {}).integrity,
-      //             src
-      //           }))
-      //         ])
-      //         .reduce(toObject, {})
-      //     ])
-      //     .reduce(toObject, {});
-      //   const result = { ...assets, [entrypointsKey]: augmented };
-      //   console.log(JSON.stringify(result, null, 2));
-      // }
     })
   ]
 };

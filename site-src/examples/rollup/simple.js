@@ -11,7 +11,9 @@ const manifestSeed = {};
 const outputDir = "site-src/assets/dist/rollup/simple";
 export default {
   input: {
-    docs: "site-src/assets/src/docs"
+    docs: "site-src/assets/src/docs",
+    app1: "site-src/assets/src/example/app1.js",
+    app2: "site-src/assets/src/example/app2.js"
   },
   output: {
     entryFileNames: "[name]-[hash].js",

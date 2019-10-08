@@ -2,17 +2,17 @@ const { resolve } = require("path");
 const AssetsManifestPlugin = require("webpack-assets-manifest");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const outputDir = resolve(
-  __dirname,
-  "../../assets/dist/webpack/asset-mainfest/simple"
-);
+const siteSrcDir = resolve(__dirname, "../../");
+
 module.exports = {
-  context: resolve(__dirname, "../../assets/src"), // the root of the repo
+  context: resolve(siteSrcDir, "assets/src"),
   entry: {
-    docs: "./docs"
+    docs: "./docs",
+    app1: "./example/app1.js",
+    app2: "./example/app2.js"
   },
   output: {
-    path: outputDir,
+    path: resolve(siteSrcDir, "assets/dist/webpack/assets-manifest/simple"),
     filename: "[name]-[contenthash].js",
     publicPath: "/assets/webpack/asset-manifets/simple"
   },
@@ -44,7 +44,7 @@ module.exports = {
     }),
     new AssetsManifestPlugin({
       // where to save the manifest
-      output: resolve(__dirname, "../../_data/webpack_assets_manifest.json"),
+      output: resolve(siteSrcDir, "_data/webpack_assets_manifest.json"),
       integrity: true,
       entrypoints: true
     })

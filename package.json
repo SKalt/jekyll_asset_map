@@ -25,13 +25,16 @@
   "scripts": {
     "build:rollup:simple": "rollup -c site-src/examples/rollup/simple.js",
     "build:rollup:split": "rollup -c site-src/examples/rollup/split.js",
-    "build:webpack:assets-manifest": "webpack --config ./site-src/examples/webpack/assets-manifest.config.js --mode production",
-    "build:webpack:assets-manifest:integrity": "webpack --config ./site-src/examples/webpack/assets-manifest.split.js --mode production",
+    "build:webpack:assets-manifest": "webpack --config ./site-src/examples/webpack/assets-manifest.simple.js --mode production",
+    "build:webpack:assets-manifest:integrity": "webpack --config ./site-src/examples/webpack/assets-manifest.integrity.js --mode production",
     "build:webpack:manifest-plugin:simple": "webpack --config ./site-src/examples/webpack/manifest-plugin.config.js --mode production",
     "build:webpack:manifest-plugin:split": "webpack --config ./site-src/examples/webpack/manifest-plugin.split.js --mode production",
     "build:jekyll": "jekyll build",
     "prebuild": "concurrently yarn:build:webpack:* yarn:build:rollup:*",
     "build": "yarn build:jekyll",
     "test": "jest"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.15"
   }
 }

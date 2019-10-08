@@ -2,16 +2,16 @@ const { resolve } = require("path");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const siteSrcDir = resolve(__dirname, "../../");
 module.exports = {
-  context: resolve(__dirname, "../../assets/src"),
+  context: resolve(siteSrcDir, "assets/src"),
   entry: {
-    docs: "./docs"
+    docs: "./docs",
+    app1: "./example/app1.js",
+    app2: "./example/app2.js"
   },
   output: {
-    path: resolve(
-      __dirname,
-      "../../assets/dist/webpack/mainfest-plugin/simple"
-    ),
+    path: resolve(siteSrcDir, "assets/dist/webpack/mainfest-plugin/simple"),
     filename: "[name]-[contenthash].js",
     publicPath: "/assets/webpack/manifest-plugin/simple"
   },
@@ -42,10 +42,7 @@ module.exports = {
     }),
     new ManifestPlugin({
       publicPath: "/assets/dist/",
-      fileName: resolve(
-        __dirname,
-        "../../_data/webpack_manifest_plugin_simple.json"
-      )
+      fileName: resolve(siteSrcDir, "_data/webpack_manifest_plugin_simple.json")
     })
   ]
 };
