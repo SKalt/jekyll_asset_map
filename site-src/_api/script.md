@@ -1,5 +1,6 @@
 ---
 ---
+
 {%
   include test/case.md
     test="asset_map/script"
@@ -25,7 +26,7 @@ Setting a boolean attribute to `false` will result in it being omitted (equivale
     async=false
 %}
 
-Missing scripts accept the standard `error` parameter (see [_](#))
+Missing scripts accept the standard `error` parameter (see the [error documentation](#docs-error))
 {%
   include test/case.md
     test="asset_map/script"

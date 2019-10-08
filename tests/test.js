@@ -13,7 +13,7 @@ const testIds = [
   "error_alert",
   "error_error",
   "error_comment",
-  "error_fail",
+  "error_404",
 
   "script_present",
   "script_present_async",

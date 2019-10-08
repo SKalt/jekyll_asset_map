@@ -14,8 +14,10 @@ services:
       - *src_volume
       - *bundle_volume
     ports:
-      - '4000:4000'
-      - '35729:35729'
+      - "4000:4000"
+      - "35729:35729"
+    environment:
+      JEKYLL_ENV: production
     command: ["jekyll", "serve", "--livereload", "--incremental"]
   # webpack:
   #   image: node:12.9.0-alpine

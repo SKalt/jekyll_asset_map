@@ -22,12 +22,12 @@ error:
       description: A specific error message.
     error: &arg_error
       required: false
-      type: one of "alert", "error", "comment", or "fail"
+      type: one of "alert", "error", "comment", or "404"
       description: What kind of error to raise.
       defaults:
         - "include.error"
         - "site.asset_map.error"
-        - '"alert"'
+        - '"404" if jekyll.environment is "production", else "alert"'
 script:
   arguments:
     map: *arg_map

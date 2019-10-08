@@ -1,5 +1,6 @@
 ---
 ---
+
 {%
   include test/case.md
     test="asset_map/error"
@@ -24,13 +25,12 @@
     message="this failed. Here's why:..."
 %}
 
-In production, $_
-
 {%
   include test/case.md
     test="asset_map/error"
-    test_case_name="error_fail"
-    error="fail"
+    test_case_name="error_404"
+    error="404"
     name="a-missing-pack.js"
 %}
 
+Causing a `404` error is the default in production. In other environments, `alert` is the default.

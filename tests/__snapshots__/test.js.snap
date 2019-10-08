@@ -35,6 +35,18 @@ exports[`asset_map chunks_js_include 1`] = `
 "
 `;
 
+exports[`asset_map chunks_js_mixed 1`] = `
+"<script src=\\"app.chunk.1.js\\"></script>
+<script src=\\"app.chunk.2.js\\" integrity=\\"sha256-h4sh\\"></script>
+<script src=\\"app.chunk.3.js\\"></script>
+"
+`;
+
+exports[`asset_map error_404 1`] = `
+"<script src=\\"/pack/does/not/exist/a-missing-pack.js\\"></script>
+"
+`;
+
 exports[`asset_map error_alert 1`] = `
 "<script>alert(\\"this failed. Here's why:...\\")</script>
 "
@@ -47,11 +59,6 @@ exports[`asset_map error_comment 1`] = `
 
 exports[`asset_map error_error 1`] = `
 "<script>throw new Error(\\"this failed. Here's why:...\\")</script>
-"
-`;
-
-exports[`asset_map error_fail 1`] = `
-"<script src=\\"/pack/does/not/exist/a-missing-pack.js\\"></script>
 "
 `;
 
@@ -101,7 +108,7 @@ exports[`asset_map script_present_missing 1`] = `
 `;
 
 exports[`asset_map stylesheet_missing 1`] = `
-"<script>alert(\\"WARNING! missing stylesheet pack named missing.css\\")</script>
+"<script src=\\"/pack/does/not/exist/missing.css\\"></script>
 "
 `;
 

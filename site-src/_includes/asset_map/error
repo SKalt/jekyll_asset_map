@@ -1,18 +1,19 @@
 {% capture result %}
-  {% capture asset_name %}{{ include.name }}{% endcapture %}
+  {% assign asset_name = include.name | default: "" %}
   {% assign message = include.message %}
-  {% unless jekyll.environment == "production" %}
-    {% assign error = include.error
-      | default: site.asset_map.error
-      | default: "alert"
-    %}
-    {% case error %}
-      {% when "alert" %}<script>alert("{{ message | strip | replace: '"', '\\"' }}")</script>
-      {% when "error" %}<script>throw new Error("{{ message | replace: '"', '\\"' }}")</script>
-      {% when "comment" %}<!-- {{ message | xml_escape }} -->
-      {% when "fail" %}<script src="/pack/does/not/exist/{{ asset_name | cgi_escape }}"></script>
-    {% endcase %}
+  {% if jekyll.environment == "production" %}
+    {% assign default_error = "404" %}
   {% else %}
-    <script src="//pack/does/not/exist/{{ asset_name | cgi_escape }}"></script>
-  {% endunless %}
+    {% assign default_error = "alert" %}
+  {% endif %}
+  {% assign error = include.error
+    | default: site.asset_map.error
+    | default: default_error
+  %}
+  {% case error %}
+    {% when "alert" %}<script>alert("{{ message | strip | replace: '"', '\\"' }}")</script>
+    {% when "error" %}<script>throw new Error("{{ message | replace: '"', '\\"' }}")</script>
+    {% when "comment" %}<!-- {{ message | xml_escape }} -->
+    {% when "404" %}<script src="/pack/does/not/exist/{{ asset_name | cgi_escape }}"></script>
+  {% endcase %}
 {% endcapture %}{{ result | strip }}

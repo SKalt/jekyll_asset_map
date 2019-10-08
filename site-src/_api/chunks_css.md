@@ -1,5 +1,6 @@
 ---
 ---
+
 {%
   include test/case.md
     test="asset_map/chunks_css"
@@ -13,4 +14,5 @@ Missing chunks throw errors exactly like missing stylesheets do.
     test="asset_map/chunks_css"
     test_case_name="chunks_css_include_missing"
     entrypoints="missing,app2"
+    error="alert"
 %}
