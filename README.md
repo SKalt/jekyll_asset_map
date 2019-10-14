@@ -4,6 +4,8 @@
 
 <!-- badges  -->
 
+![[master](https://github.com/skalt/jekyll_asset_map/actions?workflow=testing+master)](https://github.com/skalt/jekyll_asset_map/workflows/testing%20master/badge.svg)
+
 <!-- /badges -->
 
 ## When to use this

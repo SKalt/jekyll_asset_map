@@ -61,6 +61,7 @@ Copy the [`_includes/asset_map` directory]({{ page.repo }}/\_includes) into your
 
 ```javascript
 // example/{{ i }}.js
+{% include_relative assets/src/example/{{ i }}.js %}
 ```
 
 {% endcapture %}
