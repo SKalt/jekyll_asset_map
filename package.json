@@ -4,8 +4,12 @@
     "clean-webpack-plugin": "^3.0.0",
     "concurrently": "^4.1.2",
     "css-loader": "^3.2.0",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "jest": "^24.9.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "prettier": "^1.18.2",
     "rollup": "^1.20.3",
     "rollup-plugin-clear": "^2.0.7",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -30,9 +34,10 @@
     "build:webpack:manifest-plugin:simple": "webpack --config ./site-src/examples/webpack/manifest-plugin.config.js --mode production",
     "build:webpack:manifest-plugin:split": "webpack --config ./site-src/examples/webpack/manifest-plugin.split.js --mode production",
     "build:jekyll": "jekyll build",
-    "prebuild": "concurrently yarn:build:webpack:* yarn:build:rollup:*",
+    "lint": "prettier './!(node_modules|_site)/*/!(dist)/**/*.{js,json,yml,yaml,md}'",
+    "prebuild": "concurrently 'yarn:build:webpack:*' 'yarn:build:rollup:*'",
     "build": "yarn build:jekyll",
-    "test": "jest"
+    "test": "concurrently 'yarn:lint -c' 'jest'"
   },
   "dependencies": {
     "lodash-es": "^4.17.15"
