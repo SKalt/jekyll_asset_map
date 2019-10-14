@@ -1,7 +1,8 @@
 {
-  "app1.js": "/assets/dist/app1-2d199b44af5e342a0058.js",
-  "app2.js": "/assets/dist/app2-d96528906cfe2e253e95.js",
+  "vendors~app1~app2~docs.js": "/assets/dist/vendors~app1~app2~docs-35abb72d6a261d8dd57b.js",
+  "app1.js": "/assets/dist/app1-f689e42a068d598cdce5.js",
+  "app2.js": "/assets/dist/app2-0f0ea809c15264b8fceb.js",
   "docs.css": "/assets/dist/docs-502788ebadd499351ae8.css",
-  "docs.js": "/assets/dist/docs-f0c926baadb21738c71a.js",
-  "3-8c6b28cb74c0b2f91d7c.js": "/assets/dist/3-8c6b28cb74c0b2f91d7c.js"
+  "docs.js": "/assets/dist/docs-9a1bccad93d10ae3248e.js",
+  "4-81de19ecca6e95f1a3c5.js": "/assets/dist/4-81de19ecca6e95f1a3c5.js"
 }
