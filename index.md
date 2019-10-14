@@ -16,7 +16,7 @@ repo: https://github.com/SKalt/jekyll_asset_map/tree/master
 
 # [`jekyll_asset_map`](#)
 
----
+> [![v1](https://github.com/skalt/jekyll_asset_map/workflows/testing%20v1/badge.svg)](https://github.com/skalt/jekyll_asset_map/actions?workflow=testing+v1) [GitHub](https://github.com/skalt/jekyll_asset_map) [License: `Parity-6.0.0`](https://github.com/skalt/jekyll_asset_map/blob/master/LICENSE) [Buy a license for use in closed source](https://licensezero.com/projects/de9c209f-86b8-4a63-ae81-fb4ff3339d32)
 
 ## When to use this
 
