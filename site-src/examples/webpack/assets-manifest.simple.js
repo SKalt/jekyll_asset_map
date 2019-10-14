@@ -17,6 +17,9 @@ module.exports = {
     filename: "[name]-[contenthash].js",
     publicPath: "/assets/webpack/asset-manifets/simple"
   },
+  devServer: {
+    writeToDisk: true
+  },
   module: {
     rules: [
       {

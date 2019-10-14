@@ -1,30 +1,89 @@
+# inspired by https://evilmartians.com/chronicles/ruby-on-whales-docker-for-ruby-rails-development
 version: "3.4"
 
-x-abstract:
-  # abstract anchorst to be refernced later
-  volumes: &volumes
-    src: &src_volume .:/srv/jekyll:cached
-    bundle: &bundle_volume bundle:/usr/local/bundle
-    node_modules: &node_modules_volume node_modules:/node_modules
-
+x-abstract-definitions:
+  # abstract anchors to be refernced later
+  volumes:
+    src: &src_volume .:/root:cached
+    node_modules: &node_modules_volume node_modules:/root/node_modules
+  node_service: &node_service
+    image: "node:12-alpine"
+    working_dir: "/root"
+    volumes:
+      - *src_volume
+      - *node_modules_volume
 services:
   jekyll:
     image: jekyll/jekyll:3.8
     volumes:
-      - *src_volume
-      - *bundle_volume
+      - .:/srv/jekyll:cached
+      - bundle:/usr/local/bundle
     ports:
       - "4000:4000"
-      - "35729:35729"
+      - "35729:35729" # for livereload.js.
     environment:
-      JEKYLL_ENV: production
+      JEKYLL_ENV: production # to simulate gh-pages
     command: ["jekyll", "serve", "--livereload"]
-  # webpack:
-  #   image: node:12.9.0-alpine
-  #   volumes:
-  #     - *src_volume
-  #     - *node_modules_volume
-  # TODO: a rollup service
+  # none of the node services are connected to the browser.  Jekyll's livereload
+  # reacts to changes in the filesystem already; adding more livereload
+  # listeners repeatedly reloads the page for a single change.
+  rollup_simple:
+    <<: *node_service
+    command: ["yarn", "run", "build:rollup:simple", "--watch"]
+  rollup_split:
+    <<: *node_service
+    command: ["yarn", "run", "build:rollup:split", "--watch"]
+  webpack_assets_manifest_simple:
+    <<: *node_service
+    command:
+      [
+        "yarn",
+        "run",
+        "webpack-dev-server",
+        "--config",
+        "site-src/examples/webpack/assets-manifest.simple.js",
+        "--mode",
+        "production",
+      ]
+  webpack_assets_manifest_integrity:
+    <<: *node_service
+    command:
+      [
+        "yarn",
+        "run",
+        "webpack-dev-server",
+        "--config",
+        "site-src/examples/webpack/assets-manifest.integrity.js",
+        "--write-to-disk",
+        "--mode",
+        "production",
+      ]
+  webpack_manifest_plugin_simple:
+    <<: *node_service
+    command:
+      [
+        "yarn",
+        "run",
+        "webpack-dev-server",
+        "--config",
+        "site-src/examples/webpack/manifest-plugin.config.js",
+        "--write-to-disk",
+        "--mode",
+        "production",
+      ]
+  webpack_manifest_plugin_split:
+    <<: *node_service
+    command:
+      [
+        "yarn",
+        "run",
+        "webpack-dev-server",
+        "--config",
+        "site-src/examples/webpack/manifest-plugin.split.js",
+        "--write-to-disk",
+        "--mode",
+        "production",
+      ]
   # TODO: a parcel service
   # TODO: a gulp service
 
