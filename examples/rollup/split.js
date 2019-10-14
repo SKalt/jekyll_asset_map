@@ -6,8 +6,10 @@ import clear from "rollup-plugin-clear";
 import { writeFileSync, mkdirSync } from "fs";
 import { terser } from "rollup-plugin-terser";
 import crypto from "crypto";
-
 const sha256 = str => crypto.createHash("sha256").update(str);
+
+const baseurl = "jekyll_asset_map";
+const publicPath = `/${baseurl}/assets/dist/rollup/split/`;
 
 const manifestSeed = {};
 const outputDir = "assets/dist/rollup/split";
@@ -47,7 +49,7 @@ export default {
         mkdirSync(outputDir, { recursive: true });
         writeFileSync(`${outputDir}/${file}`, styles);
         manifestSeed["styles.css"] = {
-          path: `/assets/dist/rollup/split/${file}`,
+          path: `${publicPath}/${file}`,
           integrity: `sha256-${hashB64}`
         };
       },
@@ -62,7 +64,7 @@ export default {
     manifest({
       outputPath: "_data",
       fileName: "rollup_split.json",
-      publicPath: "/assets/dist/rollup/split/",
+      publicPath,
       generate: keyValueDecorator => chunks =>
         chunks.reduce((manifest, entry) => {
           const { name, fileName, code } = entry;

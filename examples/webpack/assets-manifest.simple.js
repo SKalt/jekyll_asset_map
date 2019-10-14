@@ -4,7 +4,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const siteSrcDir = resolve(__dirname, "../../");
-
+const baseurl = "jekyll_asset_map";
+const publicPath = `/${baseurl}/assets/webpack/asset-manifets/simple`;
 module.exports = {
   context: resolve(siteSrcDir, "assets/src"),
   entry: {
@@ -15,7 +16,7 @@ module.exports = {
   output: {
     path: resolve(siteSrcDir, "assets/dist/webpack/assets-manifest/simple"),
     filename: "[name]-[contenthash].js",
-    publicPath: "/assets/webpack/asset-manifets/simple"
+    publicPath
   },
   devServer: {
     writeToDisk: true
@@ -51,7 +52,8 @@ module.exports = {
       // where to save the manifest
       output: resolve(siteSrcDir, "_data/webpack_assets_manifest.json"),
       integrity: true,
-      entrypoints: true
+      entrypoints: true,
+      publicPath
     })
   ]
 };

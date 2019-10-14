@@ -9,6 +9,9 @@ import crypto from "crypto";
 const sha256 = str => crypto.createHash("sha256").update(str);
 const manifestSeed = {};
 const outputDir = "assets/dist/rollup/simple";
+const baseurl = "jekyll_asset_map";
+const publicPath = `/${baseurl}/assets/dist/rollup/simple/`;
+
 export default {
   input: {
     docs: "assets/src/docs",
@@ -35,7 +38,7 @@ export default {
         mkdirSync(outputDir, { recursive: true });
         writeFileSync(`${outputDir}/${file}`, styles);
         manifestSeed["styles.css"] = {
-          path: `/assets/dist/rollup/simple/${file}`,
+          path: `${publicPath}/${file}`,
           integrity: `sha256-${hashB64}`
         };
       },
@@ -50,7 +53,7 @@ export default {
     manifest({
       outputPath: "_data",
       fileName: "rollup_simple.json",
-      publicPath: "/assets/dist/rollup/simple/",
+      publicPath,
       generate: keyValueDecorator => chunks =>
         chunks.reduce(
           (manifest, { name, fileName }) => ({

@@ -4,7 +4,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const siteSrcDir = resolve(__dirname, "../../");
-
+const baseurl = "jekyll_asset_map";
+const publicPath = `/${baseurl}/assets/webpack/manifest-plugin/simple`;
 module.exports = {
   context: resolve(siteSrcDir, "assets/src"),
   entry: {
@@ -15,7 +16,7 @@ module.exports = {
   output: {
     path: resolve(siteSrcDir, "assets/dist/webpack/mainfest-plugin/simple"),
     filename: "[name]-[contenthash].js",
-    publicPath: "/assets/webpack/manifest-plugin/simple"
+    publicPath
   },
   devServer: {
     writeToDisk: true
@@ -48,7 +49,7 @@ module.exports = {
       ignoreOrder: false // Enable to remove warnings about conflicting order
     }),
     new ManifestPlugin({
-      publicPath: "/assets/dist/",
+      publicPath,
       fileName: resolve(siteSrcDir, "_data/webpack_manifest_plugin_simple.json")
     })
   ]

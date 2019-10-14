@@ -4,7 +4,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const siteSrcDir = resolve(__dirname, "../../");
-
+const baseurl = "jekyll_asset_map";
+const publicPath = `/${baseurl}/assets/webpack/asset-manifets/integrity/`;
 module.exports = {
   context: resolve(siteSrcDir, "assets/src"), // the root of the repo
   entry: {
@@ -15,7 +16,7 @@ module.exports = {
   output: {
     path: resolve(siteSrcDir, "assets/dist/webpack/assets-manifest/integrity"),
     filename: "[name]-[contenthash].js",
-    publicPath: "/assets/webpack/asset-manifets/simple"
+    publicPath
   },
   devServer: {
     writeToDisk: true
@@ -53,6 +54,7 @@ module.exports = {
         siteSrcDir,
         "_data/webpack_assets_manifest_integrity.json"
       ),
+      publicPath,
       integrity: true,
       entrypoints: true,
       // transform each chunk from "src" to { src, integrity }.
