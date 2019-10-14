@@ -27,3 +27,11 @@ Copy the [`_includes/asset_map` directory](./_includes/asset_map) into your own 
 # Documentation
 
 You can see the docs all together on [GitHub pages](//skalt.github.io/jekyll_asset_map/) or see [`_data/docs.yml`](./_data/docs.yml), the [`_api` example collection](./_api), and working compiler configurations at [`examples`](./examples).
+
+# Licensing
+
+This package is free to use in open source under the terms of the [Parity Public License](./LICENSE).
+
+Licenses for use in closed software are available via [licensezero.com](https://licensezero.com).
+
+[![licensezero.com pricing](https://licensezero.com/projects/de9c209f-86b8-4a63-ae81-fb4ff3339d32/badge.svg)](https://licensezero.com/projects/de9c209f-86b8-4a63-ae81-fb4ff3339d32)

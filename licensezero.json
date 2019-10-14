@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "licensezero": [
+    {
+      "agentSignature": "ce9d473fabb70a35563a098b7c70312169fdf3cf62cf96eae74071993eecf4716a0fd5c8b4f5dc675889ca1cad5aacfba124a928a0bbcc6435263a4d94196706",
+      "license": {
+        "homepage": "https://skalt.github.io/jekyll_asset_map",
+        "jurisdiction": "US-MA",
+        "name": "Steven Kalt",
+        "projectID": "de9c209f-86b8-4a63-ae81-fb4ff3339d32",
+        "publicKey": "ece6702c286382fcaef366f192073d3ffbb2a854501c0c56d87233951199564d",
+        "terms": "parity",
+        "version": "6.0.0"
+      },
+      "licensorSignature": "2be6891dde08a71d40ba1ded5d14dd03ed223b402c98a50c941052e33eb993f4402a19896f1be1a024d33451f85d5a78847189149d5fa297b10e727785caab03"
+    }
+  ]
+}
