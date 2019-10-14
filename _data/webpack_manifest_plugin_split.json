@@ -1,21 +1,17 @@
 {
   "docs": [
-    "vendors~app1~app2~docs-35abb72d6a261d8dd57b.js",
     "docs-502788ebadd499351ae8.css",
-    "docs-9a1bccad93d10ae3248e.js"
+    "docs-597220955efbac1e0364.js"
   ],
   "app1": [
-    "vendors~app1~app2~docs-35abb72d6a261d8dd57b.js",
-    "app1-f689e42a068d598cdce5.js"
+    "app1-c4bdbf6896d4c3be580f.js"
   ],
   "app2": [
-    "vendors~app1~app2~docs-35abb72d6a261d8dd57b.js",
-    "app2-0f0ea809c15264b8fceb.js"
+    "app2-2a21404a2f9788047269.js"
   ],
-  "vendors~app1~app2~docs.js": "/assets/dist/vendors~app1~app2~docs-35abb72d6a261d8dd57b.js",
-  "app1.js": "/assets/dist/app1-f689e42a068d598cdce5.js",
-  "app2.js": "/assets/dist/app2-0f0ea809c15264b8fceb.js",
-  "docs.css": "/assets/dist/docs-502788ebadd499351ae8.css",
-  "docs.js": "/assets/dist/docs-9a1bccad93d10ae3248e.js",
-  "4-81de19ecca6e95f1a3c5.js": "/assets/dist/4-81de19ecca6e95f1a3c5.js"
+  "app1.js": "/jekyll_asset_map/assets/webpack/manifest-plugin/splitapp1-c4bdbf6896d4c3be580f.js",
+  "app2.js": "/jekyll_asset_map/assets/webpack/manifest-plugin/splitapp2-2a21404a2f9788047269.js",
+  "docs.css": "/jekyll_asset_map/assets/webpack/manifest-plugin/splitdocs-502788ebadd499351ae8.css",
+  "docs.js": "/jekyll_asset_map/assets/webpack/manifest-plugin/splitdocs-597220955efbac1e0364.js",
+  "3-8c6b28cb74c0b2f91d7c.js": "/jekyll_asset_map/assets/webpack/manifest-plugin/split3-8c6b28cb74c0b2f91d7c.js"
 }

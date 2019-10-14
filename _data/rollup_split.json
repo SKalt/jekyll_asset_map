@@ -1,18 +1,18 @@
 {
   "styles.css": {
-    "path": "/assets/dist/rollup/split/styles-f0edf29f.css",
+    "path": "/jekyll_asset_map/assets/dist/rollup/split//styles-f0edf29f.css",
     "integrity": "sha256-8O3yn1WkJztNhXp8kGu1yTq4Dbg4NECzLo0qFhafvww="
   },
   "app1.js": {
-    "path": "/assets/dist/rollup/split/app1-c1815ec5.js",
-    "integrity": "sha256-W+TB1Y4byxtqbFW3Qh9ou6gALK6WGeBwK1QXaEC8i8A="
+    "path": "/jekyll_asset_map/assets/dist/rollup/split/app1-f64977d9.js",
+    "integrity": "sha256-UqOiXNWVbH2UjBRBB5G4DEG3BOgMGkyM44JwH7GhZO4="
   },
   "app2.js": {
-    "path": "/assets/dist/rollup/split/app2-db9bd06f.js",
-    "integrity": "sha256-rofWnvy0bPWYasdoKOnQ2TeMU6pYuAU+IK+oN4zAJME="
+    "path": "/jekyll_asset_map/assets/dist/rollup/split/app2-6fd951fa.js",
+    "integrity": "sha256-nyZUxhwrXLAWIHdpzQH6zTUKeb/8J1OnVf+bPHeNa0Y="
   },
   "docs.js": {
-    "path": "/assets/dist/rollup/split/docs-6d7d45af.js",
+    "path": "/jekyll_asset_map/assets/dist/rollup/split/docs-6d7d45af.js",
     "integrity": "sha256-AbpHGcgLb+kRsJGnwFEktk7uzpZOCcBY74+YBdrKVGs="
   }
 }

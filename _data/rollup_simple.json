@@ -1,9 +1,9 @@
 {
   "styles.css": {
-    "path": "/assets/dist/rollup/simple/styles-f0edf29f.css",
+    "path": "/jekyll_asset_map/assets/dist/rollup/simple//styles-f0edf29f.css",
     "integrity": "sha256-8O3yn1WkJztNhXp8kGu1yTq4Dbg4NECzLo0qFhafvww="
   },
-  "app1.js": "/assets/dist/rollup/simple/app1-c1815ec5.js",
-  "app2.js": "/assets/dist/rollup/simple/app2-db9bd06f.js",
-  "docs.js": "/assets/dist/rollup/simple/docs-6d7d45af.js"
+  "app1.js": "/jekyll_asset_map/assets/dist/rollup/simple/app1-f64977d9.js",
+  "app2.js": "/jekyll_asset_map/assets/dist/rollup/simple/app2-6fd951fa.js",
+  "docs.js": "/jekyll_asset_map/assets/dist/rollup/simple/docs-6d7d45af.js"
 }
