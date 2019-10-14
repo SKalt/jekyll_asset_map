@@ -8,12 +8,12 @@ import { writeFileSync, mkdirSync } from "fs";
 import crypto from "crypto";
 const sha256 = str => crypto.createHash("sha256").update(str);
 const manifestSeed = {};
-const outputDir = "site-src/assets/dist/rollup/simple";
+const outputDir = "assets/dist/rollup/simple";
 export default {
   input: {
-    docs: "site-src/assets/src/docs",
-    app1: "site-src/assets/src/example/app1.js",
-    app2: "site-src/assets/src/example/app2.js"
+    docs: "assets/src/docs",
+    app1: "assets/src/example/app1.js",
+    app2: "assets/src/example/app2.js"
   },
   output: {
     entryFileNames: "[name]-[hash].js",
@@ -48,7 +48,7 @@ export default {
       }
     }),
     manifest({
-      outputPath: "site-src/_data",
+      outputPath: "_data",
       fileName: "rollup_simple.json",
       publicPath: "/assets/dist/rollup/simple/",
       generate: keyValueDecorator => chunks =>

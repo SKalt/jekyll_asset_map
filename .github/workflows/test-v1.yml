@@ -28,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: asset_map
-          path: site-src/_includes/asset_map
+          path: _includes/asset_map

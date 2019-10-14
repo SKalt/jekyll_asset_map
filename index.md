@@ -34,7 +34,7 @@ If you're going to process your HTML with some tool that runs in Node.js ([webpa
 
 ## [installation](#installation)
 
-Copy the [`_includes/asset_map` directory]({{ page.repo }}/site-src/\_includes) into your own `_includes` directory.
+Copy the [`_includes/asset_map` directory]({{ page.repo }}/\_includes) into your own `_includes` directory.
 
 <a id="API"></a>
 
@@ -70,12 +70,12 @@ Copy the [`_includes/asset_map` directory]({{ page.repo }}/site-src/\_includes) 
 </details>
 Configurations:
 - `rollup`
-  - [simple configuration]({{ page.repo }}/site-src/examples/rollup/simple.js)
-  - [maximally-split, maximally-hashed]({{ page.repo }}/site-src/examples/rollup/split.js)
+  - [simple configuration]({{ page.repo }}/examples/rollup/simple.js)
+  - [maximally-split, maximally-hashed]({{ page.repo }}/examples/rollup/split.js)
 - `webpack`
   - `webpack-assets-manifest-plugin`
-    - [simple configuration]({{ page.repo }}/site-src/examples/webpack/assets-manifest.simple.js)
-    - [with integrity hashes]({{ page.repo }}/site-src/examples/webpack/assets-manifest.integrity.js)
+    - [simple configuration]({{ page.repo }}/examples/webpack/assets-manifest.simple.js)
+    - [with integrity hashes]({{ page.repo }}/examples/webpack/assets-manifest.integrity.js)
   - `webpack-manifest-plugin`
-    - [simple configuration]({{ page.repo }}/site-src/examples/webpack/manifest-plugin.config.js)
-    - [with arrays of chunks for each entrypoint]({{ page.repo }}/site-src/examples/webpack/manifest-plugin.split.js)
+    - [simple configuration]({{ page.repo }}/examples/webpack/manifest-plugin.config.js)
+    - [with arrays of chunks for each entrypoint]({{ page.repo }}/examples/webpack/manifest-plugin.split.js)

@@ -20,8 +20,8 @@ If you're going to process your HTML with some tool that runs in Node.js (webpac
 
 ## Quickstart
 
-Copy the [`_includes/asset_map` directory](./site-src/_includes/asset_map) into your own `_includes` directory.
+Copy the [`_includes/asset_map` directory](./_includes/asset_map) into your own `_includes` directory.
 
 # Documentation
 
-Either see the docs alltogether on [gh-pages](//skalt.github.io/jekyll_asset_map/) or see [`_data/docs.yml`](./site-src/_data/docs.yml) and the [`_api` example collection](./site-src/_api)
+You can see the docs all together on [GitHub pages](//skalt.github.io/jekyll_asset_map/) or see [`_data/docs.yml`](./_data/docs.yml), the [`_api` example collection](./_api), and working compiler configurations at [`examples`](./examples).

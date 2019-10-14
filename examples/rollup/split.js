@@ -10,12 +10,12 @@ import crypto from "crypto";
 const sha256 = str => crypto.createHash("sha256").update(str);
 
 const manifestSeed = {};
-const outputDir = "site-src/assets/dist/rollup/split";
+const outputDir = "assets/dist/rollup/split";
 export default {
   input: {
-    docs: "site-src/assets/src/docs",
-    app1: "site-src/assets/src/example/app1.js",
-    app2: "site-src/assets/src/example/app2.js"
+    docs: "assets/src/docs",
+    app1: "assets/src/example/app1.js",
+    app2: "assets/src/example/app2.js"
   },
   output: {
     entryFileNames: "[name]-[hash].js",
@@ -60,7 +60,7 @@ export default {
       }
     }),
     manifest({
-      outputPath: "site-src/_data",
+      outputPath: "_data",
       fileName: "rollup_split.json",
       publicPath: "/assets/dist/rollup/split/",
       generate: keyValueDecorator => chunks =>
