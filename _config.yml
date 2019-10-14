@@ -1,7 +1,6 @@
 title: jekyll-asset-map
 email: kalt.steven+jekyll-asset-map@gmail.com
 github_username: SKalt
-source: site-src
 description: Use hashed assets from webpack/rollup/parcel/another asset wrangler
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
