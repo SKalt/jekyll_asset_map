@@ -1,6 +1,6 @@
 # Jekyll asset map \_include
 
-> rails-webpacker's asset inclusion tags as jekyll \_includes
+> Use hashed assets from webpack/another asset wrangler in Jekyll without a plugin
 
 <!-- badges  -->
 
@@ -35,3 +35,7 @@ This package is free to use in open source under the terms of the [Parity Public
 Licenses for use in closed software are available via [licensezero.com](https://licensezero.com).
 
 [![licensezero.com pricing](https://licensezero.com/projects/de9c209f-86b8-4a63-ae81-fb4ff3339d32/badge.svg)](https://licensezero.com/projects/de9c209f-86b8-4a63-ae81-fb4ff3339d32)
+
+# Contributing
+
+Please do! Feel free to submit issues as you encounter them. Read over the [contributing guide](./CONTRIBUTING.md) before you submit a PR.
