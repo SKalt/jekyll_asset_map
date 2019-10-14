@@ -4,7 +4,7 @@
 
 <!-- badges  -->
 
-![[master](https://github.com/skalt/jekyll_asset_map/actions?workflow=testing+master)](https://github.com/skalt/jekyll_asset_map/workflows/testing%20master/badge.svg)
+[![master](https://github.com/skalt/jekyll_asset_map/workflows/testing%20master/badge.svg)](https://github.com/skalt/jekyll_asset_map/actions?workflow=testing+master) [![v1](https://github.com/skalt/jekyll_asset_map/workflows/testing%20v1/badge.svg)](https://github.com/skalt/jekyll_asset_map/actions?workflow=testing+v1)
 
 <!-- /badges -->
 
