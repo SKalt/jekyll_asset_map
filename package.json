@@ -41,6 +41,6 @@
     "test": "concurrently 'yarn:lint -c' 'yarn jest --testPathIgnorePatterns _site'"
   },
   "dependencies": {
-    "lodash-es": "^4.17.15"
+    "lodash-es": "^4.17.21"
   }
 }
